@@ -1,12 +1,24 @@
 {
-  "themes/default/js/app.js": {
-    "file": "assets/app-0fd5dfcd.js",
+  "themes/default/css/app.css": {
+    "file": "assets/app-DcYTOgln.css",
+    "src": "themes/default/css/app.css",
     "isEntry": true,
-    "src": "themes/default/js/app.js"
+    "names": [
+      "app.css"
+    ]
+  },
+  "themes/default/js/app.js": {
+    "file": "assets/app-l0sNRNKZ.js",
+    "name": "app",
+    "src": "themes/default/js/app.js",
+    "isEntry": true
   },
   "themes/default/sass/app.scss": {
-    "file": "assets/app-83c7c59a.css",
+    "file": "assets/app-CkDXruUG.css",
+    "src": "themes/default/sass/app.scss",
     "isEntry": true,
-    "src": "themes/default/sass/app.scss"
+    "names": [
+      "app.css"
+    ]
   }
 }
