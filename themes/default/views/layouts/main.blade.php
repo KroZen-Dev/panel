@@ -21,92 +21,118 @@
         href="{{ \Illuminate\Support\Facades\Storage::disk('public')->exists('favicon.ico') ? asset('storage/favicon.ico') : asset('favicon.ico') }}"
         type="image/x-icon">
 
-    <script src="{{ asset('plugins/alpinejs/3.12.0_cdn.min.js') }}" defer></script>
+    {{-- Core Styles --}}
+    @vite(['themes/default/css/app.css', 'themes/default/js/app.js'])
 
-    {{-- <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}"> --}}
+    {{-- Additional Plugin Styles --}}
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-
-    {{-- summernote --}}
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-
-    {{-- datetimepicker --}}
     <link rel="stylesheet"
         href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
 
-    {{-- select2 --}}
-    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-
-    <link rel="preload" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    </noscript>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <!-- tinymce -->
-    <script src="{{ asset('plugins/tinymce/js/tinymce/tinymce.min.js') }}"></script>
     <style>
-        #userDropdown.dropdown-toggle::after {
+        /* Alpine.js x-cloak - hide elements until Alpine is ready */
+        [x-cloak] {
             display: none !important;
         }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            @apply bg-gray-900;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            @apply bg-gray-700 rounded-full;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            @apply bg-gray-600;
+        }
+
+        /* Select2 Tailwind styling with accent colors */
+        .select2-container--default .select2-selection--single {
+            @apply bg-gray-800 border-gray-700 text-gray-300 rounded-lg;
+            height: 42px;
+            padding: 8px 12px;
+            transition: all 0.2s;
+        }
+
+        .select2-container--default .select2-selection--single:focus,
+        .select2-container--default.select2-container--open .select2-selection--single {
+            @apply border-accent-500 ring-2 ring-accent-500/30;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            @apply text-gray-300;
+            line-height: 26px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 40px;
+        }
+
+        .select2-dropdown {
+            @apply bg-gray-800 border-gray-700 rounded-lg shadow-2xl;
+            border-color: rgb(var(--accent-500));
+        }
+
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background: linear-gradient(to right, rgb(var(--accent-600)), rgb(var(--accent-500)));
+        }
+
+        .select2-container--default .select2-results__option--selected {
+            @apply bg-accent-700;
+        }
+
+        .select2-container--default .select2-search--dropdown .select2-search__field {
+            @apply bg-gray-700 border-gray-600 text-gray-300 rounded-lg;
+        }
+
+        .select2-container--default .select2-search--dropdown .select2-search__field:focus {
+            @apply border-accent-500 ring-2 ring-accent-500/30;
+        }
     </style>
-    @vite('themes/default/sass/app.scss')
+    <x-theming />
+
 </head>
 
-<body class="sidebar-mini layout-fixed dark-mode" style="height: auto;">
-    <div class="wrapper">
+<body class="bg-gray-900 antialiased" style="height: auto;">
+    <div class="wrapper min-h-screen flex flex-col" x-data="{
+        sidebarOpen: localStorage.getItem('sidebarOpen') !== 'false'
+    }" x-init="$watch('sidebarOpen', value => localStorage.setItem('sidebarOpen', value))"
+        @sidebar-toggle.window="sidebarOpen = $event.detail.open" x-cloak>
         @include('layouts.navbar')
+
         @include('layouts.sidebar')
-        <div class="content-wrapper">
+
+        <div class="content-wrapper flex-1  pt-14 transition-all duration-300 ease-in-out"
+            :class="sidebarOpen ? 'ml-64' : 'ml-20'">
             @yield('content')
             @include('modals.redeem_voucher_modal')
         </div>
+
         @include('layouts.footer')
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
-
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <!-- Summernote -->
-    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-    <!-- select2 -->
-    <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
-
-    <!-- Moment.js -->
-    <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-
-    <!-- Datetimepicker -->
-    <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
-    <!-- Select2 -->
-    <script src={{ asset('plugins/select2/js/select2.min.js') }}></script>
-
-
     <script>
+        // jQuery setup for legacy components
         $(document).ready(function() {
-            $('[data-toggle="popover"]').popover();
-
+            // AJAX CSRF setup
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
         });
-
-        $(document).on('alpine:init', () => {
-            Alpine.magic('currency', () => {
-                return {
-                    format: (amount) => {
-                        return (amount / 1000);
-                    },
-                }
-            });
-        })
     </script>
     <script>
         @if (Session::has('error'))
-            Swal.fire({
+            SwalCustom.fire({
                 icon: 'error',
                 title: 'Oops...',
                 html: '{{ Session::get('error') }}',
@@ -118,11 +144,22 @@
                 title: '{{ Session::get('success') }}',
                 position: 'top-end',
                 showConfirmButton: false,
-                background: '#343a40',
+                background: 'linear-gradient(135deg, rgb(var(--gray-800)) 0%, rgb(var(--gray-900)) 100%)',
+                color: '#fff',
                 toast: true,
                 timer: 3000,
                 timerProgressBar: true,
+                customClass: {
+                    popup: 'rounded-xl border shadow-2xl',
+                    timerProgressBar: 'bg-gradient-to-r',
+                },
                 didOpen: (toast) => {
+                    toast.style.borderColor = 'rgb(var(--success) / 0.3)';
+                    const progressBar = toast.querySelector('.swal2-timer-progress-bar');
+                    if (progressBar) {
+                        progressBar.style.background =
+                            'linear-gradient(to right, rgb(var(--success)), rgb(var(--info)))';
+                    }
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
@@ -134,11 +171,22 @@
                 title: '{{ Session::get('info') }}',
                 position: 'top-end',
                 showConfirmButton: false,
-                background: '#343a40',
+                background: 'linear-gradient(135deg, rgb(var(--gray-800)) 0%, rgb(var(--gray-900)) 100%)',
+                color: '#fff',
                 toast: true,
                 timer: 3000,
                 timerProgressBar: true,
+                customClass: {
+                    popup: 'rounded-xl border shadow-2xl',
+                    timerProgressBar: 'bg-gradient-to-r',
+                },
                 didOpen: (toast) => {
+                    toast.style.borderColor = 'rgb(var(--accent-500) / 0.3)';
+                    const progressBar = toast.querySelector('.swal2-timer-progress-bar');
+                    if (progressBar) {
+                        progressBar.style.background =
+                            'linear-gradient(to right, rgb(var(--accent-500)), rgb(var(--accent-600)))';
+                    }
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
@@ -150,11 +198,22 @@
                 title: '{{ Session::get('warning') }}',
                 position: 'top-end',
                 showConfirmButton: false,
-                background: '#343a40',
+                background: 'linear-gradient(135deg, rgb(var(--gray-800)) 0%, rgb(var(--gray-900)) 100%)',
+                color: '#fff',
                 toast: true,
                 timer: 3000,
                 timerProgressBar: true,
+                customClass: {
+                    popup: 'rounded-xl border shadow-2xl',
+                    timerProgressBar: 'bg-gradient-to-r',
+                },
                 didOpen: (toast) => {
+                    toast.style.borderColor = 'rgb(var(--warning) / 0.3)';
+                    const progressBar = toast.querySelector('.swal2-timer-progress-bar');
+                    if (progressBar) {
+                        progressBar.style.background =
+                            'linear-gradient(to right, rgb(var(--warning)), rgb(var(--danger)))';
+                    }
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
