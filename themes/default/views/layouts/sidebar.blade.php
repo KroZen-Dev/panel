@@ -1,11 +1,24 @@
 @use(App\Constants\PermissionGroups)
 <!-- Main Sidebar Container -->
 <aside
-    class="fixed left-0 top-0 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 border-r border-gray-700/50 flex flex-col h-screen transition-all duration-300 ease-in-out pt-14 z-40"
+    class="fixed left-0 top-0 bg-gradient-to-b from-gray-900  to-gray-800 border-r border-gray-700/50 flex flex-col h-screen transition-all duration-100 overflow-x-hidden z-40"
     x-data="{ open: localStorage.getItem('sidebarOpen') !== 'false' }" @sidebar-toggle.window="open = $event.detail.open" :class="open ? 'w-64' : 'w-20'" x-cloak>
 
     <!-- Sidebar Content -->
     <div class="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900">
+
+        <!-- Brand / Logo (moved from navbar) -->
+        <div class="flex items-center" :class="open ? 'px-3 py-4' : 'px-2 py-4'">
+            <a href="{{ route('home') }}" class="flex items-center w-full group"
+                :class="open ? 'justify-start' : 'justify-center'">
+                <img width="32" height="32"
+                    src="{{ \Illuminate\Support\Facades\Storage::disk('public')->exists('icon.png') ? asset('storage/icon.png') : asset('images/ctrlpanel_logo.png') }}"
+                    alt="{{ config('app.name', 'Laravel') }} Logo"
+                    class="rounded-full ring-2 ring-gray-800 group-hover:ring-accent-500 transition-all duration-200">
+                <span class="text-lg font-bold text-white transition-all duration-300"
+                    :class="open ? 'ml-3 inline-block opacity-100' : 'hidden'">{{ config('app.name', 'CtrlPanel.gg') }}</span>
+            </a>
+        </div>
 
         <!-- Sidebar Menu -->
         <nav class="py-4" :class="open ? 'px-3' : 'px-2'">
@@ -14,11 +27,11 @@
                 <li>
                     <a href="{{ route('home') }}"
                         class="flex items-center rounded-lg transition-all duration-200 group relative @if (Request::routeIs('home')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                        :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                        <i class="fas fa-home @if (Request::routeIs('home')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                            :class="open ? 'w-5' : 'text-xl'"></i>
-                        <span x-show="open" x-transition
-                            class="ml-3 font-medium whitespace-nowrap">{{ __('Dashboard') }}</span>
+                        :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                        <i
+                            class="fas fa-home @if (Request::routeIs('home')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                        <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                            :class="open ? 'opacity-100' : 'hidden'">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
 
@@ -26,20 +39,16 @@
                 <li>
                     <a href="{{ route('servers.index') }}"
                         class="flex items-center rounded-lg transition-all duration-200 group relative @if (Request::routeIs('servers.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                        :class="open ? 'px-4 py-3 justify-between' : 'px-3 py-3 justify-center'">
+                        :class="open ? 'px-3 py-2 justify-between' : 'px-2 py-2 justify-center'">
                         <div class="flex items-center" :class="!open && 'flex-col'">
-                            <i class="fas fa-server @if (Request::routeIs('servers.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition
-                                class="ml-3 font-medium whitespace-nowrap">{{ __('Servers') }}</span>
+                            <i
+                                class="fas fa-server @if (Request::routeIs('servers.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'ml-3 inline-block opacity-100' : 'hidden'">{{ __('Servers') }}</span>
                         </div>
                         <span x-show="open" x-transition
                             class="px-2 py-1 text-xs font-bold rounded-full @if (Request::routeIs('servers.*')) bg-white/20 @else bg-accent-500/20 text-accent-400 @endif">
                             {{ Auth::user()->servers()->count() }}/{{ Auth::user()->server_limit }}
-                        </span>
-                        <span x-show="!open"
-                            class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent-500 text-[10px] font-bold text-white">
-                            {{ Auth::user()->servers()->count() }}
                         </span>
                     </a>
                 </li>
@@ -49,11 +58,11 @@
                     <li>
                         <a href="{{ route('store.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('store.*') || Request::routeIs('checkout')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-coins @if (Request::routeIs('store.*') || Request::routeIs('checkout')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition
-                                class="ml-3 font-medium whitespace-nowrap">{{ __('Store') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-coins @if (Request::routeIs('store.*') || Request::routeIs('checkout')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Store') }}</span>
                         </a>
                     </li>
                 @endif
@@ -65,11 +74,11 @@
                         <li>
                             <a href="{{ route('ticket.index') }}"
                                 class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('ticket.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                                :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                                <i class="fas fa-ticket-alt @if (Request::routeIs('ticket.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                    :class="open ? 'w-5' : 'text-xl'"></i>
-                                <span x-show="open" x-transition
-                                    class="ml-3 font-medium whitespace-nowrap">{{ __('Support Ticket') }}</span>
+                                :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                                <i
+                                    class="fas fa-ticket-alt @if (Request::routeIs('ticket.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                                <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                    :class="open ? 'opacity-100' : 'hidden'">{{ __('Support Ticket') }}</span>
                             </a>
                         </li>
                     @endcanany
@@ -95,10 +104,11 @@
                     <li>
                         <a href="{{ route('admin.overview.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.overview.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-home @if (Request::routeIs('admin.overview.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Overview') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-home @if (Request::routeIs('admin.overview.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Overview') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -107,10 +117,11 @@
                     <li>
                         <a href="{{ route('admin.ticket.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.ticket.index')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-ticket-alt @if (Request::routeIs('admin.ticket.index')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Ticket List') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-ticket-alt @if (Request::routeIs('admin.ticket.index')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Ticket List') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -119,10 +130,11 @@
                     <li>
                         <a href="{{ route('admin.ticket.blacklist') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.ticket.blacklist')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-user-times @if (Request::routeIs('admin.ticket.blacklist')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Ticket Blacklist') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-user-times @if (Request::routeIs('admin.ticket.blacklist')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Ticket Blacklist') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -131,10 +143,11 @@
                     <li>
                         <a href="{{ route('admin.roles.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.roles.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-user-check @if (Request::routeIs('admin.roles.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Role Management') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-user-check @if (Request::routeIs('admin.roles.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Role Management') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -143,10 +156,11 @@
                     <li>
                         <a href="{{ route('admin.settings.index') . '#icons' }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.settings.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-tools @if (Request::routeIs('admin.settings.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Settings') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-tools @if (Request::routeIs('admin.settings.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Settings') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -155,10 +169,11 @@
                     <li>
                         <a href="{{ route('admin.api.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.api.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-gamepad @if (Request::routeIs('admin.api.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Application API') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-gamepad @if (Request::routeIs('admin.api.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Application API') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -175,10 +190,11 @@
                     <li>
                         <a href="{{ route('admin.users.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.users.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-users @if (Request::routeIs('admin.users.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Users') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-users @if (Request::routeIs('admin.users.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Users') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -187,10 +203,11 @@
                     <li>
                         <a href="{{ route('admin.servers.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.servers.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-server @if (Request::routeIs('admin.servers.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Servers') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-server @if (Request::routeIs('admin.servers.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-all duration-300"
+                                :class="open ? 'ml-3 inline-block opacity-100' : 'hidden'">{{ __('Servers') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -199,10 +216,11 @@
                     <li>
                         <a href="{{ route('admin.products.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.products.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-sliders-h @if (Request::routeIs('admin.products.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Products') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-sliders-h @if (Request::routeIs('admin.products.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Products') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -211,10 +229,11 @@
                     <li>
                         <a href="{{ route('admin.store.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.store.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-shopping-basket @if (Request::routeIs('admin.store.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Store') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-shopping-basket @if (Request::routeIs('admin.store.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Store') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -223,10 +242,11 @@
                     <li>
                         <a href="{{ route('admin.vouchers.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.vouchers.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-money-check-alt @if (Request::routeIs('admin.vouchers.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Vouchers') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-money-check-alt @if (Request::routeIs('admin.vouchers.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Vouchers') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -235,10 +255,11 @@
                     <li>
                         <a href="{{ route('admin.partners.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.partners.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-handshake @if (Request::routeIs('admin.partners.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Partners') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-handshake @if (Request::routeIs('admin.partners.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Partners') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -247,10 +268,11 @@
                     <li>
                         <a href="{{ route('admin.coupons.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.coupons.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-ticket-alt @if (Request::routeIs('admin.coupons.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Coupons') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-ticket-alt @if (Request::routeIs('admin.coupons.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Coupons') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -266,10 +288,11 @@
                     <li>
                         <a href="{{ route('admin.usefullinks.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.usefullinks.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-link @if (Request::routeIs('admin.usefullinks.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Useful Links') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-link @if (Request::routeIs('admin.usefullinks.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Useful Links') }}</span>
                         </a>
                     </li>
                 @endcanany
@@ -285,20 +308,16 @@
                     <li>
                         <a href="{{ route('admin.payments.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.payments.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3 justify-between' : 'px-3 py-3 justify-center'">
+                            :class="open ? 'px-3 py-2 justify-between' : 'px-2 py-2 justify-center'">
                             <div class="flex items-center" :class="!open && 'flex-col'">
-                                <i class="fas fa-money-bill-wave @if (Request::routeIs('admin.payments.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                    :class="open ? 'w-5' : 'text-xl'"></i>
-                                <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Payments') }}</span>
+                                <i
+                                    class="fas fa-money-bill-wave @if (Request::routeIs('admin.payments.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                                <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                    :class="open ? 'ml-3 inline-block opacity-100' : 'hidden'">{{ __('Payments') }}</span>
                             </div>
                             <span x-show="open" x-transition
                                 class="px-2 py-1 text-xs font-bold rounded-full @if (Request::routeIs('admin.payments.*')) bg-white/20 @else @endif"
                                 @if (!Request::routeIs('admin.payments.*')) style="background-color: rgb(var(--success) / 0.2); color: rgb(var(--success));" @endif>
-                                {{ \App\Models\Payment::count() }}
-                            </span>
-                            <span x-show="!open"
-                                class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full text-[10px] font-bold text-white"
-                                style="background-color: rgb(var(--success));">
                                 {{ \App\Models\Payment::count() }}
                             </span>
                         </a>
@@ -309,10 +328,11 @@
                     <li>
                         <a href="{{ route('admin.activitylogs.index') }}"
                             class="flex items-center rounded-lg transition-all duration-200 group @if (Request::routeIs('admin.activitylogs.*')) bg-gradient-to-r from-accent-600 to-accent-500 text-white shadow-lg shadow-accent-500/50 @else text-gray-300 hover:bg-gray-800 hover:text-white @endif"
-                            :class="open ? 'px-4 py-3' : 'px-3 py-3 justify-center'">
-                            <i class="fas fa-clipboard-list @if (Request::routeIs('admin.activitylogs.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif transition-colors duration-200"
-                                :class="open ? 'w-5' : 'text-xl'"></i>
-                            <span x-show="open" x-transition class="ml-3 font-medium">{{ __('Activity Logs') }}</span>
+                            :class="open ? 'px-3 py-2' : 'px-2 py-2 justify-center'">
+                            <i
+                                class="fas fa-clipboard-list @if (Request::routeIs('admin.activitylogs.*')) text-white @else text-accent-400 group-hover:text-accent-300 @endif w-5 text-xl transition-colors duration-200"></i>
+                            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+                                :class="open ? 'opacity-100' : 'hidden'">{{ __('Activity Logs') }}</span>
                         </a>
                     </li>
                 @endcanany

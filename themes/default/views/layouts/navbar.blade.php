@@ -1,25 +1,18 @@
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-xl border-b border-gray-800/50 shadow-lg"
-        x-data="{ sidebarOpen: true }">
+    <nav class="fixed top-0 right-0 z-50 bg-gray-900/95 backdrop-blur-xl border border-gray-800/30 shadow-sm transition-all rounded-xl mx-3"
+        x-data="{ sidebarOpen: localStorage.getItem('sidebarOpen') !== 'false' }" @sidebar-toggle.window="sidebarOpen = $event.detail.open"
+        :class="sidebarOpen ? 'left-0 md:left-64' : 'left-0 md:left-20'">
         <div class="flex items-center h-14 px-3">
             <!-- Left side - Brand & Toggle -->
             <div class="flex items-center space-x-3">
                 <!-- Toggle Button -->
-                <button @click="sidebarOpen = !sidebarOpen; $dispatch('sidebar-toggle', { open: sidebarOpen })"
-                    class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-all duration-200">
+                <button
+                    @click="sidebarOpen = !sidebarOpen; localStorage.setItem('sidebarOpen', sidebarOpen); $dispatch('sidebar-toggle', { open: sidebarOpen })"
+                    class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors duration-150">
                     <i class="fas fa-bars text-lg"></i>
                 </button>
 
-                <!-- Brand Logo -->
-                <a href="{{ route('home') }}" class="flex items-center space-x-2 group">
-                    <img width="32" height="32"
-                        src="{{ \Illuminate\Support\Facades\Storage::disk('public')->exists('icon.png') ? asset('storage/icon.png') : asset('images/ctrlpanel_logo.png') }}"
-                        alt="{{ config('app.name', 'Laravel') }} Logo"
-                        class="rounded-full ring-2 ring-gray-800 group-hover:ring-accent-500 transition-all duration-200">
-                    <span class="hidden sm:block text-lg font-bold text-white group-hover:text-accent-400 transition-colors">
-                        {{ config('app.name', 'CtrlPanel.gg') }}
-                    </span>
-                </a>
+                <!-- Brand Logo moved to sidebar -->
             </div>
 
             <!-- Center - Navbar Links -->
@@ -52,11 +45,10 @@
                             style="transition: transform 0.2s;"></i>
                     </button>
 
-                    <div x-show="open" @click.away="open = false"
-                        x-transition:enter="ease-out duration-200"
+                    <div x-show="open" @click.away="open = false" x-transition:enter="ease-out duration-200"
                         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-                        x-transition:leave="ease-in duration-150"
-                        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                        x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
                         class="absolute right-0 mt-2 w-48 rounded-lg bg-gray-800 border border-gray-700 shadow-xl overflow-hidden"
                         style="display: none;">
                         <a href="{{ route('store.index') }}"
@@ -93,11 +85,10 @@
                         </div>
                     </button>
 
-                    <div x-show="open" @click.away="open = false"
-                        x-transition:enter="ease-out duration-200"
+                    <div x-show="open" @click.away="open = false" x-transition:enter="ease-out duration-200"
                         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-                        x-transition:leave="ease-in duration-150"
-                        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                        x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
                         class="absolute right-0 mt-2 w-52 rounded-lg bg-gray-800 border border-gray-700 shadow-xl overflow-hidden"
                         style="display: none;">
 
@@ -112,7 +103,8 @@
                             <i class="fas fa-bell w-4 mr-2 text-warning"></i>
                             <span>{{ __('Notifications') }}</span>
                             @if (Auth::user()->unreadNotifications->count() != 0)
-                                <span class="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-warning to-danger text-xs font-bold text-white">
+                                <span
+                                    class="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-warning to-danger text-xs font-bold text-white">
                                     {{ Auth::user()->unreadNotifications->count() }}
                                 </span>
                             @endif
