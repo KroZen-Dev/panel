@@ -1,7 +1,8 @@
     <!-- Navbar -->
-    <nav class="fixed top-0 right-0 z-50 bg-gray-900/95 backdrop-blur-xl border border-gray-800/30 shadow-sm transition-all rounded-xl mx-3"
-        x-data="{ sidebarOpen: localStorage.getItem('sidebarOpen') !== 'false' }" @sidebar-toggle.window="sidebarOpen = $event.detail.open"
-        :class="sidebarOpen ? 'left-0 md:left-64' : 'left-0 md:left-20'">
+    <nav class="fixed top-0 z-50 bg-gray-900/95 backdrop-blur-xl border border-gray-800/30 shadow-sm transition-all"
+        x-data="{ sidebarOpen: localStorage.getItem('sidebarOpen') !== 'false' }"
+        @sidebar-toggle.window="sidebarOpen = $event.detail.open; localStorage.setItem('sidebarOpen', sidebarOpen)"
+        :class="sidebarOpen ? 'left-0 md:left-64 right-0' : 'left-0 md:left-20 right-0'">
         <div class="flex items-center h-14 px-3">
             <!-- Left side - Brand & Toggle -->
             <div class="flex items-center space-x-3">

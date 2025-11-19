@@ -2,7 +2,7 @@
 <div x-data="{ open: false }" @open-redeem-modal.window="open = true" x-show="open" x-cloak
     class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <!-- Background overlay -->
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <!-- Background overlay, show/hide based on modal state -->
         <div x-show="open" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="open = false"

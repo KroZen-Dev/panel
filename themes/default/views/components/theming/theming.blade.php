@@ -54,5 +54,13 @@
         --gray-200: {{ hexToRgb($theme->gray_200) }};
         --gray-100: {{ hexToRgb($theme->gray_100) }};
         --gray-50: {{ hexToRgb($theme->gray_50) }};
+        /* Scrollbar variables (used throughout the app) */
+        --scroll-size: 8px;
+        --scroll-radius: 8px;
+        /* Track should be near-transparent, use subtle background color in dark theme */
+        --scroll-track: rgb(var(--gray-900) / 0%);
+        /* Thumb color derived from gray-600 with alpha, used for scroll handle */
+        --scroll-thumb-color: rgb(var(--gray-600) / 0.35);
+        --scroll-thumb-hover: rgb(var(--gray-500) / 0.55);
     }
 </style>

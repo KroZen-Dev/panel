@@ -36,22 +36,24 @@
             display: none !important;
         }
 
-        /* Custom scrollbar */
+        /* Custom scrollbar (theme-aware) */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: var(--scroll-size, 8px);
+            height: var(--scroll-size, 8px);
         }
 
         ::-webkit-scrollbar-track {
-            @apply bg-gray-900;
+            background-color: var(--scroll-track, transparent);
+            border-radius: var(--scroll-radius, 8px);
         }
 
         ::-webkit-scrollbar-thumb {
-            @apply bg-gray-700 rounded-full;
+            background-color: var(--scroll-thumb-color, rgb(var(--gray-600) / 0.35));
+            border-radius: var(--scroll-radius, 8px);
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            @apply bg-gray-600;
+            background-color: var(--scroll-thumb-hover, rgb(var(--gray-500) / 0.55));
         }
 
         /* Select2 Tailwind styling with accent colors */
@@ -111,7 +113,7 @@
         @include('layouts.sidebar')
 
         <div class="content-wrapper flex-1  pt-14 transition-all duration-300 ease-in-out"
-            :class="sidebarOpen ? 'ml-64' : 'ml-20'">
+            :class="sidebarOpen ? 'md:ml-64 ml-0' : 'md:ml-20 ml-0'">
             @yield('content')
             @include('modals.redeem_voucher_modal')
         </div>
