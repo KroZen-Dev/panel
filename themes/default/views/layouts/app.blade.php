@@ -43,7 +43,9 @@
             @break
         @endswitch
     @endif
-    @vite('themes/default/sass/app.scss', 'themes/default/css/app.css', 'themes/default/js/app.js')
+    @vite('themes/default/sass/app.scss')
+    @vite('themes/default/css/app.css')
+    @vite('themes/default/js/app.js')
 </head>
 @yield('content')
 
