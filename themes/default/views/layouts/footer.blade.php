@@ -1,7 +1,7 @@
         <footer
             class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-t border-gray-700/50 transition-all duration-300 ease-in-out"
             x-data="{ sidebarOpen: localStorage.getItem('sidebarOpen') !== 'false' }" @sidebar-toggle.window="sidebarOpen = $event.detail.open"
-            :class="sidebarOpen ? 'ml-64' : 'ml-20'" x-cloak>
+            :class="sidebarOpen ? 'md:ml-64' : 'md:ml-20'" x-cloak>
             <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
                     {{-- Copyright section --}}

@@ -22,7 +22,11 @@
         type="image/x-icon">
 
     {{-- Core Styles --}}
-    @vite(['themes/default/css/app.css', 'themes/default/js/app.js'])
+    @vite('themes/default/css/app.css')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    {{-- Core JS --}}
+    @vite('themes/default/js/app.js')
 
     {{-- Additional Plugin Styles --}}
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">

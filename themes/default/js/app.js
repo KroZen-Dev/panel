@@ -1,21 +1,14 @@
-// Modern JS entry for Tailwind/Alpine-driven UI
 import Alpine from "alpinejs";
 import axios from "axios";
 import Swal from "sweetalert2";
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 
-// jQuery, Select2, FontAwesome
-import $ from "jquery";
-import "select2";
-import "select2/dist/css/select2.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-// Expose globally
 window.Alpine = Alpine;
 window.axios = axios;
 window.Swal = Swal;
-window.$ = window.jQuery = $;
 window.Tippy = tippy;
 
 // Axios defaults
@@ -75,6 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
             placement: "top",
             arrow: true,
             animation: "scale",
+            allowHTML: true,
+            interactive: true,
+            maxWidth: "28rem",
         });
     }
 });

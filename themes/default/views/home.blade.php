@@ -45,35 +45,35 @@
     </div>
 
     <!-- Stats Cards -->
-    <div class="px-6 pb-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="px-4 pb-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             <!-- Servers Card -->
             <div
-                class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
+                class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-4 border border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
                 <div class="flex items-center justify-between">
                     <div class="flex-1">
                         <p class="text-gray-400 text-sm font-medium mb-1">{{ __('Servers') }}</p>
-                        <p class="text-3xl font-bold text-white">{{ Auth::user()->servers()->count() }}</p>
+                        <p class="text-2xl font-bold text-white">{{ Auth::user()->servers()->count() }}</p>
                     </div>
-                    <div class="w-16 h-16 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl"
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl"
                         style="background: linear-gradient(to bottom right, rgb(var(--info)), rgb(var(--info) / 0.8)); box-shadow: 0 10px 15px -3px rgb(var(--info) / 0.5);">
-                        <i class="fas fa-server text-white text-2xl"></i>
+                        <i class="fas fa-server text-white text-lg"></i>
                     </div>
                 </div>
             </div>
 
             <!-- Credits Card -->
             <div
-                class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
+                class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-4 border border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
                 <div class="flex items-center justify-between">
                     <div class="flex-1">
                         <p class="text-gray-400 text-sm font-medium mb-1">{{ $general_settings->credits_display_name }}</p>
-                        <p class="text-3xl font-bold text-white">{{ Currency::formatForDisplay(Auth::user()->credits) }}
+                        <p class="text-2xl font-bold text-white">{{ Currency::formatForDisplay(Auth::user()->credits) }}
                         </p>
                     </div>
                     <div
-                        class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-yellow-500/50">
-                        <i class="fas fa-coins text-white text-2xl"></i>
+                        class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-yellow-500/50">
+                        <i class="fas fa-coins text-white text-lg"></i>
                     </div>
                 </div>
             </div>
@@ -87,17 +87,17 @@
             @endphp
             @if ($credits > 10 && $usage > 0)
                 <div
-                    class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
+                    class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-4 border border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
                     <div class="flex items-center justify-between">
                         <div class="flex-1">
                             <p class="text-gray-400 text-sm font-medium mb-1">{{ $timeMessage }}</p>
-                            <p class="text-3xl font-bold text-white">
-                                {{ $timeValue }}<span class="text-xl text-gray-400">{{ $timeUnit }}</span>
+                            <p class="text-2xl font-bold text-white">
+                                {{ $timeValue }}<span class="text-sm text-gray-400">{{ $timeUnit }}</span>
                             </p>
                         </div>
                         <div
-                            class="w-16 h-16 bg-warning-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-warning-500/50">
-                            <i class="fas fa-hourglass-half text-white text-2xl"></i>
+                            class="w-12 h-12 bg-warning-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-warning-500/50">
+                            <i class="fas fa-hourglass-half text-white text-lg"></i>
                         </div>
                     </div>
                 </div>
@@ -282,136 +282,125 @@
                     </div>
                 @endif
 
-                <!-- Activity Logs -->
+                <!-- Activity Logs (list with togglable details) -->
                 <div
                     class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border border-gray-700/50 overflow-hidden shadow-xl">
                     <div class="px-6 py-4 border-b border-gray-700/50 bg-gray-800/50">
-                        <h3 class="text-xl font-bold text-white flex items-center">
-                            <i class="fas fa-history mr-3 text-accent-400"></i>
+                        <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-lg bg-accent-blue/20 flex items-center justify-center duration-300">
+                                <i class="fas fa-history text-accent-blue"></i>
+                            </div>
                             {{ __('Activity Logs') }}
                         </h3>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-3">
+                    <div class="p-6 text-gray-300">
+                        <ul class="list-group list-group-flush">
                             @if (Auth::user()->actions()->count())
                                 @foreach (Auth::user()->actions()->take(8)->orderBy('created_at', 'desc')->get() as $log)
-                                    <div
-                                        class="bg-gray-800/50 border border-gray-700/50 rounded-lg p-4 hover:border-accent-500/50 transition-all duration-300">
-                                        <div class="flex items-start justify-between gap-4">
-                                            <div class="flex-1">
-                                                <div class="flex items-start gap-2">
-                                                    @if (str_starts_with($log->description, 'created'))
-                                                        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                                                            style="background: linear-gradient(to bottom right, rgb(var(--success)), rgb(var(--success) / 0.8));">
-                                                            <i class="fas fa-plus text-white text-sm"></i>
-                                                        </div>
-                                                    @elseif(str_starts_with($log->description, 'redeemed'))
-                                                        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                                                            style="background: linear-gradient(to bottom right, rgb(var(--success)), rgb(var(--success) / 0.8));">
-                                                            <i class="fas fa-money-check-alt text-white text-sm"></i>
-                                                        </div>
-                                                    @elseif(str_starts_with($log->description, 'deleted'))
-                                                        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                                                            style="background: linear-gradient(to bottom right, rgb(var(--danger)), rgb(var(--danger) / 0.8));">
-                                                            <i class="fas fa-times text-white text-sm"></i>
-                                                        </div>
-                                                    @elseif(str_starts_with($log->description, 'gained'))
-                                                        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                                                            style="background: linear-gradient(to bottom right, rgb(var(--success)), rgb(var(--success) / 0.8));">
-                                                            <i class="fas fa-money-bill text-white text-sm"></i>
-                                                        </div>
-                                                    @elseif(str_starts_with($log->description, 'updated'))
-                                                        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                                                            style="background: linear-gradient(to bottom right, rgb(var(--info)), rgb(var(--info) / 0.8));">
-                                                            <i class="fas fa-pen text-white text-sm"></i>
-                                                        </div>
-                                                    @endif
-
-                                                    <div class="flex-1">
-                                                        <p class="text-white font-medium">
-                                                            {{ explode('\\', $log->subject_type)[2] }}
-                                                            {{ ucfirst($log->description) }}
-                                                        </p>
-
-                                                        @php
-                                                            $properties = json_decode($log->properties, true);
-                                                        @endphp
-
-                                                        {{-- Handle Created Entries --}}
-                                                        @if ($log->description === 'created' && isset($properties['attributes']))
-                                                            <ul class="mt-2 space-y-1 text-sm text-gray-400">
-                                                                @foreach ($properties['attributes'] as $attribute => $value)
-                                                                    @if (!is_null($value))
-                                                                        <li>
-                                                                            <span
-                                                                                class="text-gray-500">{{ ucfirst($attribute) }}:</span>
-                                                                            <span class="text-gray-300">
-                                                                                {{ $attribute === 'created_at' || $attribute === 'updated_at'
-                                                                                    ? \Carbon\Carbon::parse($value)->toDayDateTimeString()
-                                                                                    : $value }}
-                                                                            </span>
-                                                                        </li>
-                                                                    @endif
-                                                                @endforeach
-                                                            </ul>
-                                                        @endif
-
-                                                        {{-- Handle Updated Entries --}}
-                                                        @if ($log->description === 'updated' && isset($properties['attributes'], $properties['old']))
-                                                            <ul class="mt-2 space-y-1 text-sm text-gray-400">
-                                                                @foreach ($properties['attributes'] as $attribute => $newValue)
-                                                                    @if (array_key_exists($attribute, $properties['old']) && !is_null($newValue))
-                                                                        <li>
-                                                                            <span
-                                                                                class="text-gray-500">{{ ucfirst($attribute) }}:</span>
-                                                                            <span class="text-gray-300">
-                                                                                {{ $attribute === 'created_at' || $attribute === 'updated_at'
-                                                                                    ? \Carbon\Carbon::parse($properties['old'][$attribute])->toDayDateTimeString() .
-                                                                                        ' → ' .
-                                                                                        \Carbon\Carbon::parse($newValue)->toDayDateTimeString()
-                                                                                    : $properties['old'][$attribute] . ' → ' . $newValue }}
-                                                                            </span>
-                                                                        </li>
-                                                                    @endif
-                                                                @endforeach
-                                                            </ul>
-                                                        @endif
-
-                                                        {{-- Handle Deleted Entries --}}
-                                                        @if ($log->description === 'deleted' && isset($properties['old']))
-                                                            <ul class="mt-2 space-y-1 text-sm text-gray-400">
-                                                                @foreach ($properties['old'] as $attribute => $value)
-                                                                    @if (!is_null($value))
-                                                                        <li>
-                                                                            <span
-                                                                                class="text-gray-500">{{ ucfirst($attribute) }}:</span>
-                                                                            <span class="text-gray-300">
-                                                                                {{ $attribute === 'created_at' || $attribute === 'updated_at'
-                                                                                    ? \Carbon\Carbon::parse($value)->toDayDateTimeString()
-                                                                                    : $value }}
-                                                                            </span>
-                                                                        </li>
-                                                                    @endif
-                                                                @endforeach
-                                                            </ul>
-                                                        @endif
+                                    @php
+                                        $properties = json_decode($log->properties, true);
+                                        $subjectParts = explode('\\', $log->subject_type);
+                                        $subjectLabel = end($subjectParts) ?: '-';
+                                        $bgClass = 'bg-gray-800/30';
+                                        $iconClass = 'text-gray-400';
+                                        $icon = 'fa-circle';
+                                        if (str_starts_with($log->description, 'created')) {
+                                            $bgClass = 'bg-emerald-500/10';
+                                            $iconClass = 'text-emerald-400';
+                                            $icon = 'fa-plus';
+                                        } elseif (str_starts_with($log->description, 'redeemed')) {
+                                            $bgClass = 'bg-emerald-500/10';
+                                            $iconClass = 'text-emerald-400';
+                                            $icon = 'fa-money-check-alt';
+                                        } elseif (str_starts_with($log->description, 'deleted')) {
+                                            $bgClass = 'bg-red-500/10';
+                                            $iconClass = 'text-red-400';
+                                            $icon = 'fa-times';
+                                        } elseif (str_starts_with($log->description, 'gained')) {
+                                            $bgClass = 'bg-emerald-500/10';
+                                            $iconClass = 'text-emerald-400';
+                                            $icon = 'fa-money-bill';
+                                        } elseif (str_starts_with($log->description, 'updated')) {
+                                            $bgClass = 'bg-blue-500/10';
+                                            $iconClass = 'text-blue-400';
+                                            $icon = 'fa-pen';
+                                        }
+                                    @endphp
+                                    <li class="flex flex-col py-2 text-gray-400 border-b border-gray-700/10 last:border-0">
+                                        <div class="flex justify-between cursor-pointer"
+                                            onclick="toggleDetails('details-home-{{ $log->id }}')">
+                                            <div class="flex items-center gap-3">
+                                                <span
+                                                    class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg {{ $bgClass }} border border-gray-700/30">
+                                                    <i class="fas {{ $icon }} {{ $iconClass }}"></i>
+                                                </span>
+                                                <div class="flex-1">
+                                                    <div class="text-white font-medium">
+                                                        {{ explode('\\', $log->subject_type)[2] ?? '-' }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">
+                                                        {{ ucfirst($log->description) }}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="text-right flex-shrink-0">
-                                                <span class="text-xs text-gray-500">
-                                                    {{ $log->created_at->diffForHumans() }}
-                                                </span>
+                                            <div class="flex items-center gap-2">
+                                                <small
+                                                    class="text-gray-600">{{ $log->created_at->diffForHumans() }}</small>
+                                                <i class="fas fa-chevron-down text-gray-500 ml-2 transition-transform"
+                                                    id="icon-{{ $log->id }}"></i>
                                             </div>
                                         </div>
-                                    </div>
+
+                                        <div id="details-home-{{ $log->id }}" class="hidden pl-11 space-y-2 mt-2"
+                                            onclick="event.stopPropagation()">
+                                            <div class="border-l-2 border-gray-700 pl-3 py-2 bg-gray-900/20 rounded-md">
+                                                @if ($log->description === 'created' && isset($properties['attributes']))
+                                                    @foreach ($properties['attributes'] as $key => $value)
+                                                        @if (!is_null($value) && !is_array($value))
+                                                            <div class="flex items-center gap-2 text-sm">
+                                                                <span
+                                                                    class="text-gray-500 min-w-[120px]">{{ $key }}</span>
+                                                                <span class="text-gray-300">{{ $value }}</span>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @elseif($log->description === 'updated' && isset($properties['attributes'], $properties['old']))
+                                                    @foreach ($properties['attributes'] as $key => $value)
+                                                        @if (array_key_exists($key, $properties['old']) && !is_null($value) && !is_array($value))
+                                                            <div class="flex items-center gap-2 text-sm">
+                                                                <span
+                                                                    class="text-gray-500 min-w-[120px]">{{ $key }}</span>
+                                                                <div class="flex items-center gap-2">
+                                                                    <span
+                                                                        class="text-red-400">{{ $properties['old'][$key] }}</span>
+                                                                    <i
+                                                                        class="fas fa-arrow-right text-gray-600 text-xs"></i>
+                                                                    <span
+                                                                        class="text-emerald-400">{{ $value }}</span>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @elseif($log->description === 'deleted' && isset($properties['old']))
+                                                    @foreach ($properties['old'] as $key => $value)
+                                                        @if (!is_null($value) && !is_array($value))
+                                                            <div class="flex items-center gap-2 text-sm">
+                                                                <span
+                                                                    class="text-gray-500 min-w-[120px]">{{ $key }}</span>
+                                                                <span class="text-gray-300">{{ $value }}</span>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </li>
                                 @endforeach
                             @else
-                                <p class="text-gray-400 text-center py-4">
-                                    {{ __('No activity logs available') }}
-                                </p>
+                                <li class="py-2 text-gray-400">No activity logs available</li>
                             @endif
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -463,10 +452,36 @@
         .unreset img {
             max-height: 300px;
         }
+
+        /* Activity Log toggle animations */
+        .fade-in {
+            transition: all 200ms ease-out;
+        }
+
+        .animate-in {
+            animation: slideIn 200ms ease-out forwards;
+        }
+
+        .rotate-180 {
+            transform: rotate(180deg);
+            transition: transform 200ms ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 
     <script>
-        var originalText = '{{ __('Click to copy') }}';
+        var originalText = 'Click to copy';
         var link = "<?php echo route('register') . '?ref=' . Auth::user()->referral_code; ?>";
         var timeoutID;
 
@@ -522,6 +537,26 @@
             } else {
                 console.log('Browser clipboard API not available');
             }
+        }
+
+        // Toggle activity detail panels (smooth animation + icon rotation)
+        function toggleDetails(detailsId) {
+            const details = document.getElementById(detailsId);
+            const iconId = detailsId.replace('details-home-', 'icon-');
+            const icon = document.getElementById(iconId);
+            if (!details) return;
+            const isHidden = details.classList.contains('hidden');
+            requestAnimationFrame(() => {
+                if (isHidden) {
+                    details.classList.remove('hidden');
+                    details.classList.add('animate-in', 'fade-in');
+                    if (icon) icon.classList.add('rotate-180');
+                } else {
+                    details.classList.add('hidden');
+                    details.classList.remove('animate-in', 'fade-in');
+                    if (icon) icon.classList.remove('rotate-180');
+                }
+            });
         }
     </script>
 @endsection
