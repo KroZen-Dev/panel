@@ -35,11 +35,11 @@
         <div class="flex items-center gap-3">
             <div class="text-4xl animate-wave">👋</div>
             <div>
-                <h1 class="text-2xl md:text-3xl font-bold text-white">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                     {{ __('Welcome back') }}, <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-800">{{ Auth::user()->name }}</span>!
                 </h1>
-                <p class="text-gray-400 text-sm">{{ __('Here\'s an overview of your account') }}</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">{{ __('Here\'s an overview of your account') }}</p>
             </div>
         </div>
     </div>
@@ -49,11 +49,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             <!-- Servers Card -->
             <div
-                class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-4 border border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
+                class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
                 <div class="flex items-center justify-between">
                     <div class="flex-1">
-                        <p class="text-gray-400 text-sm font-medium mb-1">{{ __('Servers') }}</p>
-                        <p class="text-2xl font-bold text-white">{{ Auth::user()->servers()->count() }}</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm font-medium mb-1">{{ __('Servers') }}</p>
+                        <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ Auth::user()->servers()->count() }}
+                        </p>
                     </div>
                     <div class="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl"
                         style="background: linear-gradient(to bottom right, rgb(var(--info)), rgb(var(--info) / 0.8)); box-shadow: 0 10px 15px -3px rgb(var(--info) / 0.5);">
@@ -64,11 +65,13 @@
 
             <!-- Credits Card -->
             <div
-                class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-4 border border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
+                class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
                 <div class="flex items-center justify-between">
                     <div class="flex-1">
-                        <p class="text-gray-400 text-sm font-medium mb-1">{{ $general_settings->credits_display_name }}</p>
-                        <p class="text-2xl font-bold text-white">{{ Currency::formatForDisplay(Auth::user()->credits) }}
+                        <p class="text-gray-600 dark:text-gray-400 text-sm font-medium mb-1">
+                            {{ $general_settings->credits_display_name }}</p>
+                        <p class="text-2xl font-bold text-gray-900 dark:text-white">
+                            {{ Currency::formatForDisplay(Auth::user()->credits) }}
                         </p>
                     </div>
                     <div
@@ -87,12 +90,13 @@
             @endphp
             @if ($credits > 10 && $usage > 0)
                 <div
-                    class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-4 border border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
+                    class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
                     <div class="flex items-center justify-between">
                         <div class="flex-1">
-                            <p class="text-gray-400 text-sm font-medium mb-1">{{ $timeMessage }}</p>
-                            <p class="text-2xl font-bold text-white">
-                                {{ $timeValue }}<span class="text-sm text-gray-400">{{ $timeUnit }}</span>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm font-medium mb-1">{{ $timeMessage }}</p>
+                            <p class="text-2xl font-bold text-gray-900 dark:text-white">
+                                {{ $timeValue }}<span
+                                    class="text-sm text-gray-600 dark:text-gray-400">{{ $timeUnit }}</span>
                             </p>
                         </div>
                         <div
@@ -108,13 +112,14 @@
     <!-- MOTD Full Width -->
     @if ($website_settings->motd_enabled)
         <div class="px-6 pb-6">
-            <div class="bg-gray-800 rounded-lg border border-gray-700/50 overflow-hidden shadow-xl">
-                <div class="px-4 py-3 border-b border-gray-700/50">
-                    <h3 class="text-lg font-semibold text-white">
+            <div
+                class="bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700/50 overflow-hidden shadow-xl">
+                <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700/50">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                         {{ config('app.name', 'MOTD') }} - MOTD
                     </h3>
                 </div>
-                <div class="px-4 py-4 text-gray-300 unreset">
+                <div class="px-4 py-4 text-gray-700 dark:text-gray-300 unreset">
                     {!! $website_settings->motd_message !!}
                 </div>
             </div>
@@ -128,9 +133,10 @@
             <div class="space-y-6">
                 @if ($website_settings->useful_links_enabled)
                     <div
-                        class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border border-gray-700/50 overflow-hidden shadow-xl">
-                        <div class="px-6 py-4 border-b border-gray-700/50 bg-gray-800/50">
-                            <h3 class="text-xl font-bold text-white flex items-center">
+                        class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl border border-gray-200 dark:border-gray-700/50 overflow-hidden shadow-xl">
+                        <div
+                            class="px-6 py-4 border-b border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-800/50">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center">
                                 <i class="fas fa-link mr-3 text-accent-400"></i>
                                 {{ __('Useful Links') }}
                             </h3>
@@ -138,10 +144,10 @@
                         <div class="p-6 space-y-4">
                             @if ($useful_links_dashboard->count())
                                 @foreach ($useful_links_dashboard as $useful_link)
-                                    <div class="relative bg-gray-800/50 border border-gray-700/50 rounded-lg p-4 hover:border-accent-500/50 transition-all duration-300"
+                                    <div class="relative bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 rounded-lg p-4 hover:border-accent-500/50 transition-all duration-300"
                                         x-data="{ show: true }" x-show="show" x-transition>
                                         <button @click="show = false" type="button"
-                                            class="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors">
+                                            class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-white transition-colors">
                                             <i class="fas fa-times"></i>
                                         </button>
                                         <h5 class="mb-2">
@@ -151,13 +157,14 @@
                                                 {{ $useful_link->title }}
                                             </a>
                                         </h5>
-                                        <div class="text-gray-300 text-sm">
+                                        <div class="text-gray-700 dark:text-gray-300 text-sm">
                                             {!! $useful_link->description !!}
                                         </div>
                                     </div>
                                 @endforeach
                             @else
-                                <p class="text-gray-400 text-center py-4">{{ __('No useful links available') }}</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-center py-4">
+                                    {{ __('No useful links available') }}</p>
                             @endif
                         </div>
                     </div>
@@ -168,9 +175,10 @@
             <div class="space-y-6">
                 @if ($referral_settings->enabled)
                     <div
-                        class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border border-gray-700/50 overflow-hidden shadow-xl">
-                        <div class="px-6 py-4 border-b border-gray-700/50 bg-gray-800/50">
-                            <h3 class="text-xl font-bold text-white flex items-center">
+                        class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl border border-gray-200 dark:border-gray-700/50 overflow-hidden shadow-xl">
+                        <div
+                            class="px-6 py-4 border-b border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-800/50">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center">
                                 <i class="fas fa-handshake mr-3 text-accent-400"></i>
                                 {{ __('Partner program') }}
                             </h3>
@@ -187,7 +195,7 @@
                                             </div>
                                             <span onmouseover="hoverIn()" onmouseout="hoverOut()" onclick="onClickCopy()"
                                                 id="RefLink"
-                                                class="text-white font-semibold cursor-pointer hover:opacity-80 transition-colors">
+                                                class="text-gray-900 dark:text-white font-semibold cursor-pointer hover:opacity-80 transition-colors">
                                                 {{ __('Click to copy') }}
                                             </span>
                                         </div>
@@ -197,38 +205,43 @@
                                         <div class="flex items-center justify-between">
                                             <span class="font-medium"
                                                 style="color: rgb(var(--info));">{{ __('Number of referred users:') }}</span>
-                                            <span class="text-white font-bold text-lg">{{ $numberOfReferrals }}</span>
+                                            <span
+                                                class="text-gray-900 dark:text-white font-bold text-lg">{{ $numberOfReferrals }}</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 @if ($partnerDiscount)
-                                    <div class="border-t border-gray-700/50 mt-4 pt-4">
+                                    <div class="border-t border-gray-200 dark:border-gray-700/50 mt-4 pt-4">
                                         <div class="overflow-x-auto">
                                             <table class="w-full text-sm">
                                                 <thead>
-                                                    <tr class="border-b border-gray-700/50">
-                                                        <th class="text-left py-2 px-3 text-gray-400 font-medium">
+                                                    <tr class="border-b border-gray-200 dark:border-gray-700/50">
+                                                        <th
+                                                            class="text-left py-2 px-3 text-gray-600 dark:text-gray-400 font-medium">
                                                             {{ __('Your discount') }}</th>
-                                                        <th class="text-left py-2 px-3 text-gray-400 font-medium">
+                                                        <th
+                                                            class="text-left py-2 px-3 text-gray-600 dark:text-gray-400 font-medium">
                                                             {{ __('Discount for your new users') }}</th>
-                                                        <th class="text-left py-2 px-3 text-gray-400 font-medium">
+                                                        <th
+                                                            class="text-left py-2 px-3 text-gray-600 dark:text-gray-400 font-medium">
                                                             {{ __('Reward per registered user') }}</th>
-                                                        <th class="text-left py-2 px-3 text-gray-400 font-medium">
+                                                        <th
+                                                            class="text-left py-2 px-3 text-gray-600 dark:text-gray-400 font-medium">
                                                             {{ __('New user payment commision') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="py-2 px-3 text-white font-semibold">
+                                                        <td class="py-2 px-3 text-gray-900 dark:text-white font-semibold">
                                                             {{ $partnerDiscount->partner_discount }}%</td>
-                                                        <td class="py-2 px-3 text-white font-semibold">
+                                                        <td class="py-2 px-3 text-gray-900 dark:text-white font-semibold">
                                                             {{ $partnerDiscount->registered_user_discount }}%</td>
-                                                        <td class="py-2 px-3 text-white font-semibold">
+                                                        <td class="py-2 px-3 text-gray-900 dark:text-white font-semibold">
                                                             {{ Currency::formatForDisplay($referral_settings->reward) }}
                                                             {{ $general_settings->credits_display_name }}
                                                         </td>
-                                                        <td class="py-2 px-3 text-white font-semibold">
+                                                        <td class="py-2 px-3 text-gray-900 dark:text-white font-semibold">
                                                             {{ $partnerDiscount->referral_system_commission == -1 ? $referral_settings->percentage : $partnerDiscount->referral_system_commission }}%
                                                         </td>
                                                     </tr>
@@ -237,17 +250,19 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="border-t border-gray-700/50 mt-4 pt-4">
+                                    <div class="border-t border-gray-200 dark:border-gray-700/50 mt-4 pt-4">
                                         <div class="overflow-x-auto">
                                             <table class="w-full text-sm">
                                                 <thead>
-                                                    <tr class="border-b border-gray-700/50">
+                                                    <tr class="border-b border-gray-200 dark:border-gray-700/50">
                                                         @if (in_array($referral_settings->mode, ['sign-up', 'both']))
-                                                            <th class="text-left py-2 px-3 text-gray-400 font-medium">
+                                                            <th
+                                                                class="text-left py-2 px-3 text-gray-600 dark:text-gray-400 font-medium">
                                                                 {{ __('Reward per registered user') }}</th>
                                                         @endif
                                                         @if (in_array($referral_settings->mode, ['commission', 'both']))
-                                                            <th class="text-left py-2 px-3 text-gray-400 font-medium">
+                                                            <th
+                                                                class="text-left py-2 px-3 text-gray-600 dark:text-gray-400 font-medium">
                                                                 {{ __('New user payment commision') }}</th>
                                                         @endif
                                                     </tr>
@@ -255,13 +270,15 @@
                                                 <tbody>
                                                     <tr>
                                                         @if (in_array($referral_settings->mode, ['sign-up', 'both']))
-                                                            <td class="py-2 px-3 text-white font-semibold">
+                                                            <td
+                                                                class="py-2 px-3 text-gray-900 dark:text-white font-semibold">
                                                                 {{ Currency::formatForDisplay($referral_settings->reward) }}
                                                                 {{ $general_settings->credits_display_name }}
                                                             </td>
                                                         @endif
                                                         @if (in_array($referral_settings->mode, ['commission', 'both']))
-                                                            <td class="py-2 px-3 text-white font-semibold">
+                                                            <td
+                                                                class="py-2 px-3 text-gray-900 dark:text-white font-semibold">
                                                                 {{ $referral_settings->percentage }}%</td>
                                                         @endif
                                                     </tr>
@@ -272,10 +289,10 @@
                                 @endif
                             @else
                                 <div
-                                    class="bg-gradient-to-r from-yellow-900/30 to-yellow-800/30 border border-yellow-500/50 rounded-lg p-4 text-center">
-                                    <i class="fa fa-user-check mr-2 text-yellow-400"></i>
+                                    class="bg-gradient-to-r from-yellow-100 to-yellow-50 dark:from-yellow-900/30 dark:to-yellow-800/30 border border-yellow-300 dark:border-yellow-500/50 rounded-lg p-4 text-center">
+                                    <i class="fa fa-user-check mr-2 text-yellow-600 dark:text-yellow-400"></i>
                                     <span
-                                        class="text-yellow-300 font-medium">{{ __('Make a purchase to reveal your referral-URL') }}</span>
+                                        class="text-yellow-700 dark:text-yellow-300 font-medium">{{ __('Make a purchase to reveal your referral-URL') }}</span>
                                 </div>
                             @endif
                         </div>
@@ -284,9 +301,9 @@
 
                 <!-- Activity Logs (list with togglable details) -->
                 <div
-                    class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border border-gray-700/50 overflow-hidden shadow-xl">
-                    <div class="px-6 py-4 border-b border-gray-700/50 bg-gray-800/50">
-                        <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                    class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl border border-gray-200 dark:border-gray-700/50 overflow-hidden shadow-xl">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-800/50">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
                             <div
                                 class="w-10 h-10 rounded-lg bg-accent-blue/20 flex items-center justify-center duration-300">
                                 <i class="fas fa-history text-accent-blue"></i>
@@ -294,7 +311,7 @@
                             {{ __('Activity Logs') }}
                         </h3>
                     </div>
-                    <div class="p-6 text-gray-300">
+                    <div class="p-6 text-gray-700 dark:text-gray-300">
                         <ul class="list-group list-group-flush">
                             @if (Auth::user()->actions()->count())
                                 @foreach (Auth::user()->actions()->take(8)->orderBy('created_at', 'desc')->get() as $log)
@@ -327,27 +344,28 @@
                                             $icon = 'fa-pen';
                                         }
                                     @endphp
-                                    <li class="flex flex-col py-2 text-gray-400 border-b border-gray-700/10 last:border-0">
+                                    <li
+                                        class="flex flex-col py-2 text-gray-600 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700/10 last:border-0">
                                         <div class="flex justify-between cursor-pointer"
                                             onclick="toggleDetails('details-home-{{ $log->id }}')">
                                             <div class="flex items-center gap-3">
                                                 <span
-                                                    class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg {{ $bgClass }} border border-gray-700/30">
+                                                    class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg {{ $bgClass }} border border-gray-300 dark:border-gray-700/30">
                                                     <i class="fas {{ $icon }} {{ $iconClass }}"></i>
                                                 </span>
                                                 <div class="flex-1">
-                                                    <div class="text-white font-medium">
+                                                    <div class="text-gray-900 dark:text-white font-medium">
                                                         {{ explode('\\', $log->subject_type)[2] ?? '-' }}
                                                     </div>
-                                                    <div class="text-sm text-gray-500">
+                                                    <div class="text-sm text-gray-600 dark:text-gray-500">
                                                         {{ ucfirst($log->description) }}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="flex items-center gap-2">
                                                 <small
-                                                    class="text-gray-600">{{ $log->created_at->diffForHumans() }}</small>
-                                                <i class="fas fa-chevron-down text-gray-500 ml-2 transition-transform"
+                                                    class="text-gray-600 dark:text-gray-600">{{ $log->created_at->diffForHumans() }}</small>
+                                                <i class="fas fa-chevron-down text-gray-500 dark:text-gray-500 ml-2 transition-transform"
                                                     id="icon-{{ $log->id }}"></i>
                                             </div>
                                         </div>

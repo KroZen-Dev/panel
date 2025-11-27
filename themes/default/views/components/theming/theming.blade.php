@@ -54,13 +54,72 @@
         --gray-200: {{ hexToRgb($theme->gray_200) }};
         --gray-100: {{ hexToRgb($theme->gray_100) }};
         --gray-50: {{ hexToRgb($theme->gray_50) }};
-        /* Scrollbar variables (used throughout the app) */
+
+        /* Scrollbar variables */
         --scroll-size: 8px;
         --scroll-radius: 8px;
-        /* Track should be near-transparent, use subtle background color in dark theme */
         --scroll-track: rgb(var(--gray-900) / 0%);
-        /* Thumb color derived from gray-600 with alpha, used for scroll handle */
-        --scroll-thumb-color: rgb(var(--gray-600) / 0.35);
+        --scroll-thumb-color: rgb(var(--gray-600) / 0. 35);
         --scroll-thumb-hover: rgb(var(--gray-500) / 0.55);
     }
+
+    /* Light Theme */
+    :root[data-theme="light"] {
+        --primary-50: 255 255 255;
+        --primary-100: 249 250 251;
+        --primary-200: 243 244 246;
+        --primary-300: 229 231 235;
+        --primary-400: 209 213 219;
+        --primary-500: 156 163 175;
+        --primary-600: 107 114 128;
+        --primary-700: 75 85 99;
+
+        --gray-50: 255 255 255;
+        --gray-100: 249 250 251;
+        --gray-200: 243 244 246;
+        --gray-300: 229 231 235;
+        --gray-400: 209 213 219;
+        --gray-500: 156 163 175;
+        --gray-600: 107 114 128;
+        --gray-700: 75 85 99;
+        --gray-800: 31 41 55;
+        --gray-900: 15 23 42;
+
+        --scroll-track: rgb(var(--gray-200) / 0.6);
+        --scroll-thumb-color: rgb(var(--gray-400) / 0.45);
+        --scroll-thumb-hover: rgb(var(--gray-500) / 0.6);
+    }
 </style>
+
+<script>
+    const forceTheme = @json($theme->force_theme_mode);
+    const defaultTheme = @json($theme->default_theme);
+
+    function getThemeFromLocalStorage() {
+        if (forceTheme) return forceTheme;
+        let stored = localStorage.getItem('theme');
+        if (stored) return stored;
+        if (defaultTheme === 'system') {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        return defaultTheme || 'dark';
+    }
+
+    function setThemeToLocalStorage(theme) {
+        if (!forceTheme) localStorage.setItem('theme', theme);
+    }
+
+    function setTheme(theme) {
+        setThemeToLocalStorage(theme);
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+    }
+
+    setTheme(getThemeFromLocalStorage());
+
+    window.toggleTheme = () => {
+        const current = getThemeFromLocalStorage();
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+    };
+</script>

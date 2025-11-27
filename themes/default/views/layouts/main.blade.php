@@ -107,7 +107,7 @@
 
 </head>
 
-<body class="bg-gray-900 antialiased" style="height: auto;">
+<body class="bg-gray-50 dark:bg-gray-900 antialiased" style="height: auto;">
     <div class="wrapper min-h-screen flex flex-col" x-data="{
         sidebarOpen: localStorage.getItem('sidebarOpen') !== 'false'
     }" x-init="$watch('sidebarOpen', value => localStorage.setItem('sidebarOpen', value))"
@@ -116,7 +116,7 @@
 
         @include('layouts.sidebar')
 
-        <div class="content-wrapper flex-1  pt-14 transition-all duration-300 ease-in-out"
+        <div class="content-wrapper flex-1 pt-16 md:pt-14 transition-all duration-300 ease-in-out"
             :class="sidebarOpen ? 'md:ml-64 ml-0' : 'md:ml-20 ml-0'">
             @yield('content')
             @include('modals.redeem_voucher_modal')
