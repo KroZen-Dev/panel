@@ -45,7 +45,7 @@
     </div>
 
     <!-- Stats Cards -->
-    <div class="px-4 pb-4">
+    <div class="px-6 pb-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             <!-- Servers Card -->
             <div
@@ -56,13 +56,12 @@
                         <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ Auth::user()->servers()->count() }}
                         </p>
                     </div>
-                    <div class="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl"
-                        style="background: linear-gradient(to bottom right, rgb(var(--info)), rgb(var(--info) / 0.8)); box-shadow: 0 10px 15px -3px rgb(var(--info) / 0.5);">
+                    <div
+                        class="w-12 h-12 rounded-xl flex items-center justify-center bg-accent-blue group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-blue-500/25">
                         <i class="fas fa-server text-white text-lg"></i>
                     </div>
                 </div>
             </div>
-
             <!-- Credits Card -->
             <div
                 class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-700/50 hover:border-accent-500/50 transition-all duration-300 group shadow-xl hover:shadow-2xl glow-accent">
@@ -75,7 +74,7 @@
                         </p>
                     </div>
                     <div
-                        class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-yellow-500/50">
+                        class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-yellow-500/25">
                         <i class="fas fa-coins text-white text-lg"></i>
                     </div>
                 </div>

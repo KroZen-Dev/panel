@@ -8,9 +8,9 @@
 <div class="mb-4">
     <div class="flex justify-between items-center">
         <div class="flex items-center">
-            <input id="{{ $name }}" name="{{ $name }}" type="checkbox" value="1"
-                @checked(old($name, $value) == 1)
-                class="h-4 w-4 text-accent-600 bg-gray-100 border-gray-300 rounded focus:ring-accent-500 dark:focus:ring-accent-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+            <input id="{{ $name }}" name="{{ $name }}" type="radio" value="{{ $value }}"
+                @checked(old($name) == $value)
+                class="h-4 w-4 text-accent-600 bg-gray-100 border-gray-300 focus:ring-accent-500 dark:focus:ring-accent-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
             <label for="{{ $name }}"
                 class="ml-2 block text-sm text-gray-900 dark:text-gray-300">{{ $label }}</label>
         </div>
