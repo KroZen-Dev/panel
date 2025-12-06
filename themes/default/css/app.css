@@ -48,8 +48,22 @@
             0 0 60px rgb(var(--accent-600) / 0.4);
     }
 }
+@font-face {
+    font-family: "Inter";
+    src: url("./fonts/InterVariable.woff2") format("woff2-variations");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+}
 
 @layer utilities {
+    .font-sans {
+        font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif,
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+            "Noto Color Emoji";
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
     /* Text gradient using accent colors */
     .text-gradient {
         @apply bg-gradient-to-r from-accent-400 to-accent-600 bg-clip-text text-transparent;

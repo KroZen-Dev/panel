@@ -55,6 +55,9 @@
         --gray-100: {{ hexToRgb($theme->gray_100) }};
         --gray-50: {{ hexToRgb($theme->gray_50) }};
 
+        /* Font variables */
+        --font-inter: "Inter";
+
         /* Scrollbar variables */
         --scroll-size: 8px;
         --scroll-radius: 8px;

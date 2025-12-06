@@ -107,7 +107,7 @@
 
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-900 antialiased" style="height: auto;">
+<body class="bg-gray-50 dark:bg-gray-900 antialiased font-sans" style="height: auto;">
     <div class="wrapper min-h-screen flex flex-col" x-data="{
         sidebarOpen: localStorage.getItem('sidebarOpen') !== 'false'
     }" x-init="$watch('sidebarOpen', value => localStorage.setItem('sidebarOpen', value))"
