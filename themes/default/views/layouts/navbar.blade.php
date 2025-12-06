@@ -39,14 +39,14 @@
 
                 @if (!$defaultThemeSettings->force_theme_mode)
                     <!-- Theme Dropdown -->
-                    <div x-data="{ open: false }" class="relative">
-                        <button type="button" @click="open = !open" @keydown.escape.window="open = false"
-                            :aria-expanded="open"
-                            class="flex items-center px-3 py-1.5 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-200">
-                            <i class="fas" :class="$store.theme.dark ? 'fa-moon' : 'fa-sun'"></i>
-                            <span class="hidden lg:inline ml-2">{{ __('Theme') }}</span>
-                            <i class="fas fa-chevron-down ml-2 text-xs" :class="open ? 'rotate-180' : ''"
-                                style="transition: transform 0.2s;"></i>
+                    <div x-data="{ open: false, isDark: document.documentElement.classList.contains('dark') }" @theme-changed.window="isDark = $event.detail.dark" class="relative">
+                        <button @click="open = !open" @keydown.escape.window="open = false" x-bind:aria-expanded="open"
+                            class="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-150 flex items-center gap-1">
+                            <i class="fas" :class="isDark ? 'fa-moon text-accent-400' : 'fa-sun text-warning'"
+                                style="transition: all 0.3s;"></i>
+                            <i class="fas fa-chevron-down text-xs transition-all"
+                                :class="[open ? 'rotate-180' : '', isDark ? 'text-gray-400' : 'text-gray-700']"
+                                style="transition: transform 0.2s, color 0.3s;"></i>
                         </button>
 
                         <div x-show="open" x-transition:enter="ease-out duration-200"
@@ -81,11 +81,11 @@
                 <!-- Credits Dropdown -->
                 <div x-data="{ open: false }" class="relative">
                     <button @click="open = !open"
-                        class="flex items-center px-3 py-1.5 rounded-lg bg-gradient-to-r from-accent-600 to-accent-500 hover:from-accent-500 hover:to-accent-600 text-white text-sm font-semibold transition-all duration-200">
-                        <i class="fas fa-coins mr-2 text-xs"></i>
-                        <span>{{ Currency::formatForDisplay(Auth::user()->credits) }}</span>
-                        <i class="fas fa-chevron-down ml-2 text-xs" :class="open ? 'rotate-180' : ''"
-                            style="transition: transform 0.2s;"></i>
+                        class="p-2 rounded-lg bg-accent-600/90 text-white hover:bg-accent-500/90 transition-colors duration-150 flex items-center gap-1">
+                        <i class="fas fa-coins hidden sm:inline"></i>
+                        <span class="text-sm font-medium">{{ Currency::formatForDisplay(Auth::user()->credits) }}</span>
+                        <i class="fas fa-chevron-down text-xs transition-all hidden md:inline"
+                            :class="open ? 'rotate-180' : ''" style="transition: transform 0.2s;"></i>
                     </button>
 
                     <div x-show="open" @click.away="open = false" x-transition:enter="ease-out duration-200"
@@ -105,79 +105,6 @@
                             <i class="fas fa-money-check-alt w-4 mr-2 text-success"></i>
                             <span>{{ __('Redeem code') }}</span>
                         </a>
-                    </div>
-                </div>
-
-                <!-- User Profile Dropdown -->
-                <div x-data="{ open: false }" class="relative">
-                    <button @click="open = !open"
-                        class="flex items-center space-x-2 px-2 py-1 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-all duration-200 group">
-                        <span
-                            class="hidden lg:block text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
-                            {{ Auth::user()->name }}
-                        </span>
-                        <div class="relative">
-                            <img width="32" height="32"
-                                class="rounded-full ring-2 ring-gray-800 group-hover:ring-accent-500 transition-all duration-200"
-                                src="{{ Auth::user()->getAvatar() }}" alt="{{ Auth::user()->name }}">
-                            @if (Auth::user()->unreadNotifications->count() != 0)
-                                <span
-                                    class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-warning to-danger text-xs font-bold text-white animate-pulse">
-                                    {{ Auth::user()->unreadNotifications->count() }}
-                                </span>
-                            @endif
-                        </div>
-                    </button>
-
-                    <div x-show="open" @click.away="open = false" x-transition:enter="ease-out duration-200"
-                        x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-                        x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100 scale-100"
-                        x-transition:leave-end="opacity-0 scale-95"
-                        class="absolute right-0 mt-2 w-52 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden"
-                        style="display: none;">
-
-                        <a href="{{ route('profile.index') }}"
-                            class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors">
-                            <i class="fas fa-user w-4 mr-2 text-accent-400"></i>
-                            <span>{{ __('Profile') }}</span>
-                        </a>
-
-                        <a href="{{ route('notifications.index') }}"
-                            class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors">
-                            <i class="fas fa-bell w-4 mr-2 text-warning"></i>
-                            <span>{{ __('Notifications') }}</span>
-                            @if (Auth::user()->unreadNotifications->count() != 0)
-                                <span
-                                    class="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-warning to-danger text-xs font-bold text-white">
-                                    {{ Auth::user()->unreadNotifications->count() }}
-                                </span>
-                            @endif
-                        </a>
-
-                        <a href="{{ route('preferences.index') }}"
-                            class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors">
-                            <i class="fas fa-cog w-4 mr-2 text-gray-500 dark:text-gray-400"></i>
-                            <span>{{ __('Preferences') }}</span>
-                        </a>
-
-                        @if (session()->get('previousUser'))
-                            <div class="border-t border-gray-200 dark:border-gray-700"></div>
-                            <a href="{{ route('users.logbackin') }}"
-                                class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors">
-                                <i class="fas fa-sign-in-alt w-4 mr-2 text-success"></i>
-                                <span>{{ __('Log back in') }}</span>
-                            </a>
-                        @endif
-
-                        <div class="border-t border-gray-200 dark:border-gray-700"></div>
-                        <form method="post" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit"
-                                class="w-full flex items-center px-3 py-2 text-sm text-danger hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-danger/80 transition-colors">
-                                <i class="fas fa-sign-out-alt w-4 mr-2"></i>
-                                <span>{{ __('Logout') }}</span>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>

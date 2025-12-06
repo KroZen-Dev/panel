@@ -59,7 +59,7 @@
         --scroll-size: 8px;
         --scroll-radius: 8px;
         --scroll-track: rgb(var(--gray-900) / 0%);
-        --scroll-thumb-color: rgb(var(--gray-600) / 0. 35);
+        --scroll-thumb-color: rgb(var(--gray-600) / 0.35);
         --scroll-thumb-hover: rgb(var(--gray-500) / 0.55);
     }
 
@@ -113,6 +113,11 @@
         setThemeToLocalStorage(theme);
         document.documentElement.dataset.theme = theme;
         document.documentElement.classList.toggle('dark', theme === 'dark');
+        window.dispatchEvent(new CustomEvent('theme-changed', {
+            detail: {
+                dark: theme === 'dark'
+            }
+        }));
     }
 
     setTheme(getThemeFromLocalStorage());
