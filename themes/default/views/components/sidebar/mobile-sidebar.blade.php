@@ -1,4 +1,8 @@
 @use(App\Constants\PermissionGroups)
+@php
+    $general_settings = app(App\Settings\GeneralSettings::class);
+@endphp
+
 <!-- Mobile Sidebar -->
 <!-- Backdrop -->
 <div x-data="{ open: localStorage.getItem('sidebarOpen') !== 'false' }" @sidebar-toggle.window="open = $event.detail.open" x-cloak x-show="open"

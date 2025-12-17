@@ -1,4 +1,8 @@
 @use(App\Constants\PermissionGroups)
+@php
+    $general_settings = app(App\Settings\GeneralSettings::class);
+@endphp
+
 <!-- Main Sidebar Container -->
 <!-- Main Sidebar Container -->
 <aside
@@ -28,8 +32,8 @@
                 <x-sidebar.item label="Dashboard" icon="fas fa-home" :route="'home'" :route-pattern="'home'" />
 
                 <!-- Servers -->
-                <x-sidebar.item label="Servers" icon="fas fa-server" route="servers.index"
-                    route-pattern="servers.*" :badge="Auth::user()->servers()->count() . '/' . Auth::user()->server_limit" />
+                <x-sidebar.item label="Servers" icon="fas fa-server" route="servers.index" route-pattern="servers.*"
+                    :badge="Auth::user()->servers()->count() . '/' . Auth::user()->server_limit" />
 
 
                 <!-- Store -->
@@ -65,8 +69,8 @@
                                 :route-pattern="'admin.ticket.*'" />
                         @endcanany
                         @canany(PermissionGroups::TICKET_BLACKLIST_PERMISSIONS)
-                            <x-sidebar.item label="Ticket Blacklist" icon="fas fa-user-times"
-                                route="admin.ticket.blacklist" :route-pattern="'admin.ticket.blacklist'" />
+                            <x-sidebar.item label="Ticket Blacklist" icon="fas fa-user-times" route="admin.ticket.blacklist"
+                                :route-pattern="'admin.ticket.blacklist'" />
                         @endcanany
                         @canany(PermissionGroups::ROLES_PERMISSIONS)
                             <x-sidebar.item label="Role Management" icon="fas fa-user-check" route="admin.roles.index"
@@ -90,8 +94,7 @@
                     <x-sidebar.section title="Management" name="management">
 
                         @canany(PermissionGroups::USERS_PERMISSIONS)
-                            <x-sidebar.item label="Users" icon="fas fa-users" route="admin.users.index"
-                                :route-pattern="'admin.users.*'" />
+                            <x-sidebar.item label="Users" icon="fas fa-users" route="admin.users.index" :route-pattern="'admin.users.*'" />
                         @endcanany
 
                         @canany(PermissionGroups::SERVERS_PERMISSIONS)
@@ -140,8 +143,8 @@
                         @endcanany
 
                         @canany(PermissionGroups::LOGS_PERMISSIONS)
-                            <x-sidebar.item label="Activity Logs" icon="fas fa-clipboard-list"
-                                route="admin.activitylogs.index" :route-pattern="'admin.activitylogs.*'" />
+                            <x-sidebar.item label="Activity Logs" icon="fas fa-clipboard-list" route="admin.activitylogs.index"
+                                :route-pattern="'admin.activitylogs.*'" />
                         @endcanany
                     </x-sidebar.section>
                 @endcanany
