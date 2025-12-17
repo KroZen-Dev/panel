@@ -12,29 +12,29 @@ return new class extends SettingsMigration
         $this->migrator->add('theming.force_theme_mode', null);
         $this->migrator->add('theming.default_theme', 'dark');
 
-        $this->migrator->add('theming.primary_100', '#f4f6f8');
-        $this->migrator->add('theming.primary_200', '#e9ecef');
-        $this->migrator->add('theming.primary_300', '#d7dce0');
-        $this->migrator->add('theming.primary_400', '#b5bcc3');
-        $this->migrator->add('theming.primary_500', '#949ca3');
-        $this->migrator->add('theming.primary_600', '#717a83');
-        $this->migrator->add('theming.primary_700', '#4c5359');
+        $this->migrator->add('theming.primary_100', '#f1f5f9');
+        $this->migrator->add('theming.primary_200', '#e2e8f0');
+        $this->migrator->add('theming.primary_300', '#cbd5e1');
+        $this->migrator->add('theming.primary_400', '#94a3b8');
+        $this->migrator->add('theming.primary_500', '#64748b');
+        $this->migrator->add('theming.primary_600', '#475569');
+        $this->migrator->add('theming.primary_700', '#334155');
 
-        $this->migrator->add('theming.accent_50', '#f2f7fb');
-        $this->migrator->add('theming.accent_100', '#e6eff7');
-        $this->migrator->add('theming.accent_200', '#d1e1ef');
-        $this->migrator->add('theming.accent_300', '#b2ccde');
-        $this->migrator->add('theming.accent_400', '#8aaec8');
-        $this->migrator->add('theming.accent_500', '#6b8fb2');
-        $this->migrator->add('theming.accent_600', '#4f7394');
-        $this->migrator->add('theming.accent_700', '#384f63');
-        $this->migrator->add('theming.accent_800', '#1e2a35');
+        $this->migrator->add('theming.accent_50', '#f0f8ff');
+        $this->migrator->add('theming.accent_100', '#e6eaf8');
+        $this->migrator->add('theming.accent_200', '#d4d9f7');
+        $this->migrator->add('theming.accent_300', '#b8c5f0');
+        $this->migrator->add('theming.accent_400', '#7fa3e8');
+        $this->migrator->add('theming.accent_500', '#3062a3');
+        $this->migrator->add('theming.accent_600', '#2962cc');
+        $this->migrator->add('theming.accent_700', '#0e1434');
+        $this->migrator->add('theming.accent_800', '#2ef2ff');
 
-        $this->migrator->add('theming.success', '#4caf7b');
-        $this->migrator->add('theming.warning', '#d8a354');
-        $this->migrator->add('theming.info', '#5c8fb9');
-        $this->migrator->add('theming.danger', '#d6655a');
-        $this->migrator->add('theming.cyan', '#7fbac9');
+        $this->migrator->add('theming.success', '#10b981');
+        $this->migrator->add('theming.warning', '#f59e0b');
+        $this->migrator->add('theming.info', '#0ea5e9');
+        $this->migrator->add('theming.danger', '#ef4444');
+        $this->migrator->add('theming.cyan', '#06b6d4');
 
         $this->migrator->add('theming.gray_50', '#f9fafb');
         $this->migrator->add('theming.gray_100', '#f4f5f7');

@@ -82,7 +82,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Primary 100',
                 'description' => 'Lightest primary color. Used for subtle backgrounds and hover states.',
                 'options' => [
-                    'default' => '#f4f6f8',
+                    'default' => '#f1f5f9',
                 ],
             ],
             'primary_200' => [
@@ -91,7 +91,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Primary 200',
                 'description' => 'Light primary color. Used for disabled states and secondary backgrounds.',
                 'options' => [
-                    'default' => '#e9ecef',
+                    'default' => '#e2e8f0',
                 ],
             ],
             'primary_300' => [
@@ -100,7 +100,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Primary 300',
                 'description' => 'Medium-light primary color. Used for borders and subtle accents.',
                 'options' => [
-                    'default' => '#d7dce0',
+                    'default' => '#cbd5e1',
                 ],
             ],
             'primary_400' => [
@@ -109,7 +109,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Primary 400',
                 'description' => 'Medium primary color. Used for secondary buttons and interactive elements.',
                 'options' => [
-                    'default' => '#b5bcc3',
+                    'default' => '#94a3b8',
                 ],
             ],
             'primary_500' => [
@@ -118,7 +118,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Primary 500',
                 'description' => 'Main primary color. Used for primary buttons, links, and key UI elements.',
                 'options' => [
-                    'default' => '#949ca3',
+                    'default' => '#64748b',
                 ],
             ],
             'primary_600' => [
@@ -127,7 +127,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Primary 600',
                 'description' => 'Dark primary color. Used for active states and hover effects on primary elements.',
                 'options' => [
-                    'default' => '#717a83',
+                    'default' => '#475569',
                 ],
             ],
             'primary_700' => [
@@ -136,7 +136,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Primary 700',
                 'description' => 'Darkest primary color. Used for strong emphasis, focus states, and text on light backgrounds.',
                 'options' => [
-                    'default' => '#4c5359',
+                    'default' => '#334155',
                 ],
             ],
             'accent_50' => [
@@ -145,7 +145,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Accent 50',
                 'description' => 'Ultra-light accent color. Used for very subtle backgrounds.',
                 'options' => [
-                    'default' => '#f2f7fb',
+                    'default' => '#f0f8ff',
                 ],
             ],
             'accent_100' => [
@@ -154,7 +154,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Accent 100',
                 'description' => 'Lightest accent color. Used for subtle backgrounds and hover states.',
                 'options' => [
-                    'default' => '#e6eff7',
+                    'default' => '#e6eaf8',
                 ],
             ],
             'accent_200' => [
@@ -163,7 +163,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Accent 200',
                 'description' => 'Light accent color. Used for disabled states and secondary backgrounds.',
                 'options' => [
-                    'default' => '#d1e1ef',
+                    'default' => '#d4d9f7',
                 ],
             ],
             'accent_300' => [
@@ -172,7 +172,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Accent 300',
                 'description' => 'Medium-light accent color. Used for borders and subtle accents.',
                 'options' => [
-                    'default' => '#b2ccde',
+                    'default' => '#b8c5f0',
                 ],
             ],
             'accent_400' => [
@@ -181,7 +181,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Accent 400',
                 'description' => 'Medium accent color. Used for secondary buttons and interactive elements.',
                 'options' => [
-                    'default' => '#8aaec8',
+                    'default' => '#7fa3e8',
                 ],
             ],
             'accent_500' => [
@@ -190,7 +190,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Accent 500',
                 'description' => 'Main accent color. Used for highlight buttons and key UI elements.',
                 'options' => [
-                    'default' => '#6b8fb2',
+                    'default' => '#3062a3',
                 ],
             ],
             'accent_600' => [
@@ -199,7 +199,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Accent 600',
                 'description' => 'Dark accent color. Used for active states and hover effects on accent elements.',
                 'options' => [
-                    'default' => '#4f7394',
+                    'default' => '#2962cc',
                 ],
             ],
             'accent_700' => [
@@ -208,7 +208,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Accent 700',
                 'description' => 'Darkest accent color. Used for strong emphasis and focus states.',
                 'options' => [
-                    'default' => '#384f63',
+                    'default' => '#0e1434',
                 ],
             ],
             'accent_800' => [
@@ -217,7 +217,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Accent 800 (Cyan Glow)',
                 'description' => 'Bright cyan glow effect. Used for special highlights and glow effects.',
                 'options' => [
-                    'default' => '#1e2a35',
+                    'default' => '#2ef2ff',
                 ],
             ],
             'success' => [
@@ -226,7 +226,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Success Color',
                 'description' => 'Color used for success messages, positive indicators, and confirmed actions.',
                 'options' => [
-                    'default' => '#4caf7b',
+                    'default' => '#10b981',
                 ],
             ],
             'warning' => [
@@ -235,7 +235,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Warning Color',
                 'description' => 'Color used for warning messages, alerts, and pending actions.',
                 'options' => [
-                    'default' => '#d8a354',
+                    'default' => '#f59e0b',
                 ],
             ],
             'info' => [
@@ -244,7 +244,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Info Color',
                 'description' => 'Color used for informational messages and general notices.',
                 'options' => [
-                    'default' => '#5c8fb9',
+                    'default' => '#0ea5e9',
                 ],
             ],
             'danger' => [
@@ -253,7 +253,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Danger Color',
                 'description' => 'Color used for error messages, danger alerts, and destructive actions.',
                 'options' => [
-                    'default' => '#d6655a',
+                    'default' => '#ef4444',
                 ],
             ],
             'cyan' => [
@@ -262,7 +262,7 @@ class DefaultThemeSettings extends Settings
                 'label' => 'Cyan Color',
                 'description' => 'Bright cyan color. Used for special highlights, glow effects, and accents.',
                 'options' => [
-                    'default' => '#7fbac9',
+                    'default' => '#06b6d4',
                 ],
             ],
             'gray_50' => [

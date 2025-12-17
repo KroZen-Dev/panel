@@ -138,10 +138,19 @@
     </script>
     <script>
         @if (Session::has('error'))
-            SwalCustom.fire({
+            Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 html: '{{ Session::get('error') }}',
+                customClass: {
+                    popup: "rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700",
+                    title: "text-gray-900 dark:text-white font-semibold",
+                    htmlContainer: "text-gray-700 dark:text-gray-300",
+                    confirmButton: "bg-gradient-to-r from-accent-600 to-accent-500 hover:from-accent-500 hover:to-accent-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-accent-500/50 hover:scale-105",
+                    cancelButton: "bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200",
+                    actions: "gap-3",
+                },
+                buttonsStyling: false,
             })
         @endif
         @if (Session::has('success'))

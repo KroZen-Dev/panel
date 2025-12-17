@@ -27,7 +27,7 @@
                     alt="{{ config('app.name', 'Laravel') }} Logo"
                     class="rounded-full ring-2 ring-gray-800 group-hover:ring-accent-500 transition-all duration-200">
                 <span
-                    class="text-lg font-bold text-white transition-all duration-300 ml-3">{{ config('app.name', 'CtrlPanel.gg') }}</span>
+                    class="text-lg font-bold text-gray-900 dark:text-white transition-all duration-300 ml-3">{{ config('app.name', 'CtrlPanel.gg') }}</span>
             </a>
         </div>
         <!-- Sidebar Menu -->

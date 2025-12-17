@@ -1,405 +1,407 @@
-@extends('layouts.main')
-
 @section('content')
     <!-- CONTENT HEADER -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="mb-2 row">
-                <div class="col-sm-6">
-                    <h1>{{__('Server Settings')}}</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">{{__('Dashboard')}}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('servers.index') }}">{{__('Server')}}</a></li>
-                        <li class="breadcrumb-item"><a class="text-muted"
-                                href="{{ route('servers.show', $server->id) }}">{{__('Settings')}}</a>
-                        </li>
-                    </ol>
-                </div>
+    <div class="px-6 pt-6 pb-4">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{{ __('Server Settings') }}</h1>
+                <nav class="flex gap-2 mt-2 text-sm text-gray-600 dark:text-gray-400">
+                    <a href="{{ route('home') }}" class="hover:text-accent-500 transition-colors">{{ __('Dashboard') }}</a>
+                    <span>/</span>
+                    <a href="{{ route('servers.index') }}"
+                        class="hover:text-accent-500 transition-colors">{{ __('Servers') }}</a>
+                    <span>/</span>
+                    <a href="{{ route('servers.show', $server->id) }}"
+                        class="hover:text-accent-500 transition-colors">{{ __('Settings') }}</a>
+                </nav>
             </div>
         </div>
-
-    </section>
+    </div>
     <!-- END CONTENT HEADER -->
 
     <!-- MAIN CONTENT -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="pt-3 row">
-                <div class="mb-4 col-xl-3 col-sm-6 mb-xl-0">
-                  <div class="card">
-                    <div class="p-3 card-body">
-                      <div class="row">
-                        <div class="col-8">
-                          <div class="numbers">
-                            <p class="mb-0 text-sm text-uppercase font-weight-bold">{{ __('SERVER NAME') }}</p>
-                            <h5 class="font-weight-bolder" id="domain_text">
-                              <span class="text-sm text-success font-weight-bolder">{{ $server->name }}</span>
-                            </h5>
-                          </div>
+    <section class="px-6 pb-6" x-data="{
+        showUpgradeModal: false,
+        showDeleteModal: false,
+        showBillingPriorityModal: false
+    }">
+        <div class="max-w-7xl mx-auto space-y-6">
+            <!-- STAT CARDS -->
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <!-- Server Name -->
+                <div
+                    class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                                {{ __('SERVER NAME') }}</p>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white" id="domain_text">{{ $server->name }}
+                            </h3>
                         </div>
-                        <div class="col-4 text-end">
-                          <div class="text-center icon icon-shape bg-gradient-primary shadow-primary rounded-circle">
-                            <i class='bx bx-fingerprint' style="color: white;"></i>
-                          </div>
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="bx bx-fingerprint text-white text-xl"></i>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-                <div class="mb-4 col-xl-3 col-sm-6 mb-xl-0">
-                  <div class="card">
-                    <div class="p-3 card-body">
-                      <div class="row">
-                        <div class="col-8">
-                          <div class="numbers">
-                            <p class="mb-0 text-sm text-uppercase font-weight-bold">{{ __('CPU') }}</p>
-                            <h5 class="font-weight-bolder">
-                              <span class="text-sm text-success font-weight-bolder">@if($server->product->cpu == 0){{ __('Unlimited') }} @else {{$server->product->cpu}} % @endif</span>
-                            </h5>
-                          </div>
+
+                <!-- CPU -->
+                <div
+                    class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                                {{ __('CPU') }}</p>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+                                @if ($server->product->cpu == 0)
+                                    {{ __('Unlimited') }}
+                                @else
+                                    {{ $server->product->cpu }} %
+                                @endif
+                            </h3>
                         </div>
-                        <div class="col-4 text-end">
-                          <div class="text-center icon icon-shape bg-gradient-danger shadow-danger rounded-circle">
-                            <i class='bx bxs-chip' style="color: white;"></i>
-                          </div>
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="bx bxs-chip text-white text-xl"></i>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-                <div class="mb-4 col-xl-3 col-sm-6 mb-xl-0">
-                  <div class="card">
-                    <div class="p-3 card-body">
-                      <div class="row">
-                        <div class="col-8">
-                          <div class="numbers">
-                            <p class="mb-0 text-sm text-uppercase font-weight-bold">{{ __('MEMORY') }}</p>
-                            <h5 class="font-weight-bolder">
-                              <span class="text-sm text-success font-weight-bolder">@if($server->product->memory == 0){{ __('Unlimited') }} @else {{$server->product->memory}}MB @endif</span>
-                            </h5>
-                          </div>
+
+                <!-- Memory -->
+                <div
+                    class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                                {{ __('MEMORY') }}</p>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+                                @if ($server->product->memory == 0)
+                                    {{ __('Unlimited') }}
+                                @else
+                                    {{ $server->product->memory }}MB
+                                @endif
+                            </h3>
                         </div>
-                        <div class="col-4 text-end">
-                          <div class="text-center icon icon-shape bg-gradient-success shadow-success rounded-circle">
-                            <i class='bx bxs-memory-card' style="color: white;"></i>
-                          </div>
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="bx bxs-memory-card text-white text-xl"></i>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col-xl-3 col-sm-6">
-                  <div class="card">
-                    <div class="p-3 card-body">
-                      <div class="row">
-                        <div class="col-8">
-                          <div class="numbers">
-                            <p class="mb-0 text-sm text-uppercase font-weight-bold">{{ __('STORAGE') }}</p>
-                            <h5 class="font-weight-bolder">
-                              <span class="text-sm text-success font-weight-bolder">@if($server->product->disk == 0){{ __('Unlimited') }} @else {{$server->product->disk}}MB @endif</span>
-                            </h5>
-                          </div>
+
+                <!-- Storage -->
+                <div
+                    class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                                {{ __('STORAGE') }}</p>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+                                @if ($server->product->disk == 0)
+                                    {{ __('Unlimited') }}
+                                @else
+                                    {{ $server->product->disk }}MB
+                                @endif
+                            </h3>
                         </div>
-                        <div class="col-4 text-end">
-                          <div class="text-center icon icon-shape bg-gradient-warning shadow-warning rounded-circle">
-                            <i class='bx bxs-hdd' style="color: white;"></i>
-                          </div>
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="bx bxs-hdd text-white text-xl"></i>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="float-right card-title"><i title="Created at" class="mr-2 fas fa-calendar-alt"></i><span>{{ $server->created_at->isoFormat('LL') }}</span></h5>
-                            <h5 class="card-title"><i class="mr-2 fas fa-sliders-h"></i>{{__('Server Information')}}</h5>
+
+            <!-- MAIN SECTIONS -->
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <!-- Server Information -->
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700/50 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700/50 flex items-center gap-2">
+                        <i class="fas fa-sliders-h text-accent-500"></i>
+                        <h2 class="text-lg font-bold text-gray-900 dark:text-white">{{ __('Server Information') }}</h2>
+                        <div class="ml-auto text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-calendar-alt mr-1" data-tippy-content="{{ __('Created at') }}"></i>
+                            {{ $server->created_at->isoFormat('LL') }}
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-        
-                                <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-5">
-                                            <label>{{__('Server ID')}}</label>
-                                        </div>
-                                        <div class="col-sm-8 col-md-7">
-                                            <span style="max-width: 250px;" class="d-inline-block text-truncate">
-                                                {{ $server->id }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-5">
-                                            <label>{{__('Pterodactyl ID')}}</label>
-                                        </div>
-                                        <div class="col-sm-8 col-md-7">
-                                            <span style="max-width: 250px;" class="d-inline-block text-truncate">
-                                                {{ $server->identifier }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-5">
-                                            <label>{{__('Hourly Price')}}</label>
-                                        </div>
-                                        <div class="col-sm-8 col-md-7">
-                                            <span style="max-width: 250px;" class="d-inline-block text-truncate">
-                                              {{ Currency::formatForDisplay($server->product->getHourlyPrice()) }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-5">
-                                            <label>{{__('Monthly Price')}}</label>
-                                        </div>
-                                        <div class="col-sm-8 col-md-7">
-                                            <span style="max-width: 250px;" class="d-inline-block text-truncate">
-                                              {{ Currency::formatForDisplay($server->product->getMonthlyPrice()) }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-5">
-                                            <label>{{__('Location')}}</label>
-                                        </div>
-                                        <div class="col-sm-8 col-md-7">
-                                            <span style="max-width: 250px;" class="d-inline-block text-truncate">
-                                                {{ $serverAttributes["relationships"]["location"]["attributes"]["short"] }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-5">
-                                            <label>{{__('Node')}}</label>
-                                        </div>
-                                        <div class="col-sm-8 col-md-7">
-                                            <span style="max-width: 250px;" class="d-inline-block text-truncate">
-                                                {{ $serverAttributes["relationships"]["node"]["attributes"]["name"] }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-5">
-                                            <label>{{__('Backups')}}</label>
-                                        </div>
-                                        <div class="col-sm-8 col-md-7">
-                                            <span style="max-width: 250px;" class="d-inline-block text-truncate">
-                                                {{ $server->product->backups }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-5">
-                                            <label>{{__('OOM Killer')}}</label>
-                                        </div>
-                                        <div class="col-sm-8 col-md-7">
-                                            <span style="max-width: 250px;" class="d-inline-block text-truncate">
-                                                {{ $server->product->oom_killer ? __("enabled") : __("disabled") }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-5">
-                                            <label>{{__('MySQL Database')}}</label>
-                                        </div>
-                                        <div class="col-sm-8 col-md-7">
-                                            <span style="max-width: 250px;" class="d-inline-block text-truncate">
-                                                {{ $server->product->databases }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-        
+                    </div>
+
+                    <div class="px-6 py-6">
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                            <div class="flex items-center justify-between py-2">
+                                <span
+                                    class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Server ID') }}</span>
+                                <span
+                                    class="text-sm text-gray-900 dark:text-white font-mono truncate max-w-48">{{ $server->id }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span
+                                    class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Pterodactyl ID') }}</span>
+                                <span
+                                    class="text-sm text-gray-900 dark:text-white font-mono truncate max-w-48">{{ $server->identifier }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span
+                                    class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Hourly Price') }}</span>
+                                <span
+                                    class="text-sm text-gray-900 dark:text-white">{{ Currency::formatForDisplay($server->product->getHourlyPrice()) }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span
+                                    class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Monthly Price') }}</span>
+                                <span
+                                    class="text-sm text-gray-900 dark:text-white">{{ Currency::formatForDisplay($server->product->getMonthlyPrice()) }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span
+                                    class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Location') }}</span>
+                                <span
+                                    class="text-sm text-gray-900 dark:text-white truncate max-w-48">{{ $serverAttributes['relationships']['location']['attributes']['short'] }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span
+                                    class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Node') }}</span>
+                                <span
+                                    class="text-sm text-gray-900 dark:text-white truncate max-w-48">{{ $serverAttributes['relationships']['node']['attributes']['name'] }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span
+                                    class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Backups') }}</span>
+                                <span class="text-sm text-gray-900 dark:text-white">{{ $server->product->backups }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span
+                                    class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('OOM Killer') }}</span>
+                                <span
+                                    class="text-sm text-gray-900 dark:text-white">{{ $server->product->oom_killer ? __('enabled') : __('disabled') }}</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span
+                                    class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('MySQL Database') }}</span>
+                                <span
+                                    class="text-sm text-gray-900 dark:text-white">{{ $server->product->databases }}</span>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <div class="text-center col-md-12">
-                                <!-- Upgrade Button trigger modal -->
-                                @if($server_enable_upgrade && Auth::user()->can("user.server.upgrade"))
-                                    <button type="button" data-toggle="modal" data-target="#UpgradeModal{{ $server->id }}" target="__blank"
-                                        class="btn btn-info btn-md">
-                                        <i class="mr-2 fas fa-upload"></i>
-                                        <span>{{ __('Upgrade / Downgrade') }}</span>
-                                    </button>
-                                <!-- Upgrade Modal -->
-                                <div style="width: 100%; margin-block-start: 100px;" class="modal fade" id="UpgradeModal{{ $server->id }}" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div x-data class="modal-content">
-                                            <div class="modal-header card-header">
-                                                <h5 class="modal-title">{{__("Upgrade/Downgrade Server")}}</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body card-body">
-                                                <strong>{{__("Current Product")}}: </strong> {{ $server->product->name }}
-                                                <br>
-                                                <br>
-        
-                                            <form action="{{ route('servers.upgrade', ['server' => $server->id]) }}" method="POST" class="upgrade-form">
-                                              @csrf
-                                                  <select x-on:change="$el.value ? $refs.upgradeSubmit.disabled = false : $refs.upgradeSubmit.disabled = true" name="product_upgrade" id="product_upgrade" class="form-input2 form-control">
-                                                    <option value="">{{__("Select the product")}}</option>
-                                                      @foreach($products as $product)
-                                                          @if($product->id != $server->product->id && $product->disabled == false)
-                                                            <option value="{{ $product->id }}" @if($product->doesNotFit)disabled @endif>{{ $product->name }} [ {{ $credits_display_name }} {{ $product->display_price }} @if($product->doesNotFit)] {{__('Server can´t fit on this node')}} @else @if($product->minimum_credits != null) /
-                                                                {{__("Required")}}: {{$product->display_minimum_credits}} {{ $credits_display_name }}@endif ] @endif</option>
-                                                          @endif
-                                                      @endforeach
-                                                  </select>
-        
-                                                  <br> <strong>{{__("Caution") }}:</strong> {{__("Upgrading/Downgrading your server will reset your billing cycle to now. Your overpayed Credits will be refunded. The price for the new billing cycle will be withdrawed")}}. <br>
-                                                  <br> {{__("Server will be automatically restarted once upgraded")}}
-                                              </div>
-                                              <div class="modal-footer card-body">
-                                                  <button x-ref="upgradeSubmit" type="submit" class="btn btn-primary upgrade-once" style="width: 100%" disabled><strong>{{__("Change Product")}}</strong></button>
-                                              </div>
-                                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700/50">
+                        <div class="flex justify-center gap-3">
+                            @if ($server_enable_upgrade && Auth::user()->can('user.server.upgrade'))
+                                <x-button variant="outline" @click="showUpgradeModal = true">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    {{ __('Upgrade / Downgrade') }}
+                                </x-button>
                             @endif
-                                <!-- Delete Button trigger modal -->
-                                <button type="button" data-toggle="modal" data-target="#DeleteModal" target="__blank"
-                                    class="btn btn-danger btn-md">
-                                    <i class="mr-2 fas fa-trash"></i>
-                                    <span>{{ __('Delete') }}</span>
-                                </button>
-                                <!-- Delete Modal -->
-                                <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="DeleteModalLabel">{{__("Delete Server")}}</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        {{__("This is an irreversible action, all files of this server will be removed!")}}
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
-                                        <form class="d-inline" method="post" action="{{ route('servers.destroy', ['server' => $server->id]) }}">
-                                          @csrf
-                                          @method('DELETE')
-                                          <button data-toggle="popover" data-trigger="hover" data-placement="top" class="mr-1 btn btn-danger">{{__("Delete")}}</button>
-                                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        </form>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title"><i class="mr-2 fas fa-flag"></i>{{__('Server Billing Priority')}}</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <label>{{__('Current Billing Priority')}}</label>
-                                </div>
-                                <div class="col-lg-8">
-                                    <span style="" class="d-inline-block">
-                                        {{ $server->effective_billing_priority->label() }} - ({{ $server->effective_billing_priority->description() }})
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="text-center col-md-12">
-                                <!-- Billing Priority Button trigger modal -->
-                                <button type="button" data-toggle="modal" data-target="#BillingPriorityModal" target="__blank"
-                                    class="btn btn-info btn-md">
-                                    <i class="mr-2 fas fa-flag"></i>
-                                    <span>{{ __('Change Billing Priority') }}</span>
-                                </button>
-                                <!-- Billing Priority Modal -->
-                                <div class="modal fade" id="BillingPriorityModal" tabindex="-1" role="dialog" aria-labelledby="BillingPriorityModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div x-data class="modal-content">
-                                            <div class="modal-header card-header">
-                                                <h5 class="modal-title">{{__("Update Billing Priority")}}</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body card-body">
-                                                <form action="{{ route('servers.updateBillingPriority', ['server' => $server->id]) }}" method="POST" id="billing_priority_form">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <select x-on:change="$el.value ? $refs.prioritySubmit.disabled = false : $refs.prioritySubmit.disabled = true" name="billing_priority" id="billing_priority" class="form-input2 form-control">
-                                                        <option value="">{{__("Select the billing priority")}}</option>
-                                                        @foreach(App\Enums\BillingPriority::cases() as $priority)
-                                                            <option value="{{ $priority->value }}" @selected($server->effective_billing_priority == $priority)>
-                                                                {{ $priority->label() }} - ({{ $priority->description() }})
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button x-ref="prioritySubmit" type="submit" form="billing_priority_form" class="btn btn-primary billing_priority_submit w-100" disabled>
-                                                    {{ __('Update') }}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <x-button variant="danger" @click="showDeleteModal = true">
+                                <i class="fas fa-trash mr-2"></i>
+                                {{ __('Delete') }}
+                            </x-button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Server Billing Priority -->
+            <div
+                class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700/50 overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700/50 flex items-center gap-2">
+                    <i class="fas fa-flag text-accent-500"></i>
+                    <h2 class="text-lg font-bold text-gray-900 dark:text-white">{{ __('Server Billing Priority') }}</h2>
+                </div>
 
+                <div class="px-6 py-6">
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ __('Current Billing Priority') }}</span>
+                        <span
+                            class="text-sm text-gray-900 dark:text-white">{{ $server->effective_billing_priority->label() }}
+                            - ({{ $server->effective_billing_priority->description() }})</span>
+                    </div>
+                </div>
 
+                <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700/50">
+                    <div class="flex justify-center">
+                        <x-button variant="outline" @click="showBillingPriorityModal = true">
+                            <i class="fas fa-flag mr-2"></i>
+                            {{ __('Change Billing Priority') }}
+                        </x-button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- END CUSTOM CONTENT -->
+
+        @if ($server_enable_upgrade && Auth::user()->can('user.server.upgrade'))
+            <!-- Upgrade Modal -->
+            <div x-cloak x-show="showUpgradeModal" x-transition.opacity.duration-200
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+                @click="showUpgradeModal = false" @keydown.escape.window="showUpgradeModal = false">
+                <div class="w-full max-w-md mx-auto" @click.stop>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl">
+                        <div
+                            class="px-6 py-4 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between">
+                            <h5 class="text-lg font-bold text-gray-900 dark:text-white">
+                                {{ __('Upgrade/Downgrade Server') }}</h5>
+                            <button type="button" class="text-gray-400 hover:text-gray-600"
+                                @click="showUpgradeModal = false">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="px-6 py-4">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                <strong>{{ __('Current Product') }}:</strong> {{ $server->product->name }}
+                            </p>
+                            <form action="{{ route('servers.upgrade', ['server' => $server->id]) }}" method="POST"
+                                class="mt-4 space-y-4 upgrade-form">
+                                @csrf
+                                <select
+                                    x-on:change="$el.value ? $refs.upgradeSubmit.disabled = false : $refs.upgradeSubmit.disabled = true"
+                                    name="product_upgrade" id="product_upgrade"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-500">
+                                    <option value="">{{ __('Select the product') }}</option>
+                                    @foreach ($products as $product)
+                                        @if ($product->id != $server->product->id && $product->disabled == false)
+                                            <option value="{{ $product->id }}"
+                                                @if ($product->doesNotFit) disabled @endif>
+                                                {{ $product->name }} [ {{ $credits_display_name }}
+                                                {{ $product->display_price }}
+                                                @if ($product->doesNotFit)
+                                                    ] {{ __('Server can\'t fit on this node') }}
+                                                @else
+                                                    @if ($product->minimum_credits != null)
+                                                        / {{ __('Required') }}:
+                                                        {{ $product->display_minimum_credits }}
+                                                        {{ $credits_display_name }}
+                                                    @endif ]
+                                                @endif
+                                            </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                <p class="text-sm text-amber-600 dark:text-amber-400">
+                                    <strong>{{ __('Caution') }}:</strong>
+                                    {{ __('Upgrading/Downgrading your server will reset your billing cycle to now. Your overpayed Credits will be refunded. The price for the new billing cycle will be withdrawed') }}.
+                                </p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">
+                                    {{ __('Server will be automatically restarted once upgraded') }}
+                                </p>
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="flex justify-end border-t border-gray-200 dark:border-gray-700/50 pt-4">
+                                    <x-button x-ref="upgradeSubmit" type="submit" variant="primary"
+                                        class="upgrade-once" disabled>
+                                        {{ __('Change Product') }}
+                                    </x-button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        <!-- Delete Modal -->
+        <div x-cloak x-show="showDeleteModal" x-transition.opacity.duration-200
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" @click="showDeleteModal = false"
+            @keydown.escape.window="showDeleteModal = false">
+            <div class="w-full max-w-md mx-auto" @click.stop>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl">
+                    <div
+                        class="px-6 py-4 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between">
+                        <h5 class="text-lg font-bold text-gray-900 dark:text-white">{{ __('Delete Server') }}</h5>
+                        <button type="button" class="text-gray-400 hover:text-gray-600"
+                            @click="showDeleteModal = false">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        {{ __('This is an irreversible action, all files of this server will be removed!') }}
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700/50 flex justify-end gap-3">
+                        <x-button variant="secondary" @click="showDeleteModal = false">
+                            {{ __('Cancel') }}
+                        </x-button>
+                        <form class="inline" method="post"
+                            action="{{ route('servers.destroy', ['server' => $server->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <x-button variant="danger" data-tippy-content="{{ __('This cannot be undone.') }}">
+                                {{ __('Delete') }}
+                            </x-button>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Billing Priority Modal -->
+        <div x-cloak x-show="showBillingPriorityModal" x-transition.opacity.duration-200
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+            @click="showBillingPriorityModal = false" @keydown.escape.window="showBillingPriorityModal = false">
+            <div class="w-full max-w-md mx-auto" @click.stop>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl">
+                    <div
+                        class="px-6 py-4 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between">
+                        <h5 class="text-lg font-bold text-gray-900 dark:text-white">
+                            {{ __('Update Billing Priority') }}</h5>
+                        <button type="button" class="text-gray-400 hover:text-gray-600"
+                            @click="showBillingPriorityModal = false">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="px-6 py-4">
+                        <form action="{{ route('servers.updateBillingPriority', ['server' => $server->id]) }}"
+                            method="POST" id="billing_priority_form" class="space-y-4">
+                            @csrf
+                            @method('PATCH')
+                            <select
+                                x-on:change="$el.value ? $refs.prioritySubmit.disabled = false : $refs.prioritySubmit.disabled = true"
+                                name="billing_priority" id="billing_priority"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-500">
+                                <option value="">{{ __('Select the billing priority') }}</option>
+                                @foreach (App\Enums\BillingPriority::cases() as $priority)
+                                    <option value="{{ $priority->value }}" @selected($server->effective_billing_priority == $priority)>
+                                        {{ $priority->label() }} - ({{ $priority->description() }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            <div class="flex justify-end">
+                                <x-button x-ref="prioritySubmit" type="submit" variant="primary"
+                                    class="billing_priority_submit" disabled>
+                                    {{ __('Update') }}
+                                </x-button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <!-- END CONTENT -->
-    <script type="text/javascript">
-      $(".upgrade-form").submit(function (e) {
 
-          $(".upgrade-once").attr("disabled", true);
-          return true;
-      })
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.upgrade-form').forEach((form) => {
+                form.addEventListener('submit', () => {
+                    form.querySelectorAll('.upgrade-once').forEach((button) => {
+                        button.setAttribute('disabled', 'disabled');
+                    });
+                });
+            });
 
-      $("#billing_priority_form").submit(function (e) {
+            const billingForm = document.getElementById('billing_priority_form');
+            if (billingForm) {
+                billingForm.addEventListener('submit', () => {
+                    billingForm.querySelectorAll('.billing_priority_submit').forEach((button) => {
+                        button.setAttribute('disabled', 'disabled');
+                    });
+                });
+            }
 
-          $(".billing_priority_submit").attr("disabled", true);
-          return true;
-      })
-
-     </script>
-
+            if (window.tippy) {
+                tippy('[data-tippy-content]', {
+                    allowHTML: true,
+                    interactive: true,
+                    animation: 'shift-away',
+                    theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+                });
+            }
+        });
+    </script>
 @endsection
-

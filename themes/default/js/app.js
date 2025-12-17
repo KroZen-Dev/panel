@@ -75,7 +75,7 @@ Alpine.start();
 document.addEventListener("DOMContentLoaded", () => {
     // Initialize Select2 with Tailwind styling
     if (window.$ && typeof window.$.fn.select2 === "function") {
-        window.$(". select2").select2({
+        window.$(".select2").select2({
             theme: "default",
             width: "100%",
             dropdownAutoWidth: true,
