@@ -11,7 +11,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('Dashboard')}}</a></li>
-                        <li class="breadcrumb-item"><a class="text-muted" href="{{route('admin.ticket.index')}}">{{__('Ticket List')}}</a></li>
+                        <li class="breadcrumb-item"><a class="text-muted"
+                                                       href="{{route('admin.ticket.index')}}">{{__('Ticket List')}}</a></li>
                     </ol>
                 </div>
             </div>
@@ -31,6 +32,8 @@
                     </div>
                     <a href="{{route("admin.ticket.category.index")}}"><button class="float-right btn btn-primary">+ {{__("Add Category")}}</button></a>
                 </div>
+
+
 
                 <div class="card-body table-responsive">
 
@@ -52,6 +55,9 @@
 
                 </div>
             </div>
+
+
+
         </div>
         <!-- END CUSTOM CONTENT -->
 
