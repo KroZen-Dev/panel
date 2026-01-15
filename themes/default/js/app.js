@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize Tippy.js tooltips
     if (window.Tippy) {
-        window.Tippy("[data-tippy-content]", {
+        window.Tippy("[data-tippy-content], [title]", {
             theme: "dark",
             placement: "top",
             arrow: true,

@@ -16,7 +16,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "themes/default/css/app.css": {
-    "file": "assets/app-B2xGXt82.css",
+    "file": "assets/app-CtykJbGC.css",
     "src": "themes/default/css/app.css",
     "isEntry": true,
     "names": [
@@ -28,7 +28,7 @@
     "src": "themes/default/css/fonts/InterVariable.woff2"
   },
   "themes/default/js/app.js": {
-    "file": "assets/app-CaqwJTvO.js",
+    "file": "assets/app-0Qp0TMv8.js",
     "name": "app",
     "src": "themes/default/js/app.js",
     "isEntry": true,

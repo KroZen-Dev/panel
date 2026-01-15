@@ -78,8 +78,8 @@
                                     <span class="text-gray-600 dark:text-gray-400">{{ __('Location') }}:</span>
                                     <div class="flex items-center gap-2">
                                         <span class="text-gray-900 dark:text-gray-100">{{ $server->location }}</span>
-                                        <i data-toggle="popover" data-trigger="hover"
-                                            data-content="{{ __('Node') }}: {{ $server->node }}"
+                                        <i data-tippy-content="{{ __('Node') }}: {{ $server->node }}"
+                                            data-tippy-interactive="true"
                                             class="fas fa-info-circle text-gray-500 dark:text-gray-400 cursor-help"></i>
                                     </div>
                                 </div>
@@ -103,8 +103,8 @@
                                     <span class="text-gray-600 dark:text-gray-400">{{ __('Resource plan') }}:</span>
                                     <div class="flex items-center gap-2">
                                         <span class="text-gray-900 dark:text-gray-100">{{ $server->product->name }}</span>
-                                        <i data-toggle="popover" data-trigger="hover" data-html="true"
-                                            data-content="{{ __('CPU') }}: {{ $server->product->cpu / 100 }} {{ __('vCores') }} <br/>{{ __('RAM') }}: {{ $server->product->memory }} MB <br/>{{ __('Disk') }}: {{ $server->product->disk }} MB <br/>{{ __('Backups') }}: {{ $server->product->backups }} <br/> {{ __('MySQL Databases') }}: {{ $server->product->databases }} <br/> {{ __('Allocations') }}: {{ $server->product->allocations }} <br/>{{ __('OOM Killer') }}: {{ $server->product->oom_killer ? __('enabled') : __('disabled') }} <br/> {{ __('Billing Period') }}: {{ $server->product->billing_period }}"
+                                        <i data-tippy-content="{{ __('CPU') }}: {{ $server->product->cpu / 100 }} {{ __('vCores') }} <br/>{{ __('RAM') }}: {{ $server->product->memory }} MB <br/>{{ __('Disk') }}: {{ $server->product->disk }} MB <br/>{{ __('Backups') }}: {{ $server->product->backups }} <br/> {{ __('MySQL Databases') }}: {{ $server->product->databases }} <br/> {{ __('Allocations') }}: {{ $server->product->allocations }} <br/>{{ __('OOM Killer') }}: {{ $server->product->oom_killer ? __('enabled') : __('disabled') }} <br/> {{ __('Billing Period') }}: {{ $server->product->billing_period }}"
+                                            data-tippy-interactive="true"
                                             class="fas fa-info-circle text-gray-500 dark:text-gray-400 cursor-help"></i>
                                     </div>
                                 </div>
@@ -179,8 +179,8 @@
                                             @elseif($server->product->billing_period == 'hourly')
                                                 {{ __('per Hour') }}
                                             @endif
-                                            <i data-toggle="popover" data-trigger="hover"
-                                                data-content="{{ __('Your') . ' ' . $credits_display_name . ' ' . __('are reduced') . ' ' . $server->product->billing_period . '. ' . __('This however calculates to ') . Currency::formatForDisplay($server->product->getMonthlyPrice()) . ' ' . $credits_display_name . ' ' . __('per Month') }}"
+                                            <i data-tippy-content="{{ __('Your') . ' ' . $credits_display_name . ' ' . __('are reduced') . ' ' . $server->product->billing_period . '. ' . __('This however calculates to ') . Currency::formatForDisplay($server->product->getMonthlyPrice()) . ' ' . $credits_display_name . ' ' . __('per Month') }}"
+                                                data-tippy-interactive="true"
                                                 class="fas fa-info-circle text-gray-500 dark:text-gray-400 cursor-help"></i>
                                         </div>
                                         <span class="text-lg font-bold text-gray-900 dark:text-white">
@@ -195,23 +195,23 @@
                                 class="flex gap-2 px-6 py-4 border-t border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-900/50">
                                 <a href="{{ $pterodactyl_url }}/server/{{ $server->identifier }}" target="_blank"
                                     class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-sm"
-                                    data-toggle="tooltip" data-placement="bottom" title="{{ __('Manage Server') }}">
+                                    title="{{ __('Manage Server') }}">
                                     <i class="fas fa-tools"></i>
                                 </a>
                                 <a href="{{ route('servers.show', ['server' => $server->id]) }}"
                                     class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-sm"
-                                    data-toggle="tooltip" data-placement="bottom" title="{{ __('Server Settings') }}">
+                                    title="{{ __('Server Settings') }}">
                                     <i class="fas fa-cog"></i>
                                 </a>
                                 <button onclick="handleServerCancel('{{ $server->id }}');"
                                     class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white font-semibold rounded-lg transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-                                    {{ $server->suspended || $server->canceled ? 'disabled' : '' }} data-toggle="tooltip"
-                                    data-placement="bottom" title="{{ __('Cancel Server') }}">
+                                    {{ $server->suspended || $server->canceled ? 'disabled' : '' }}
+                                    title="{{ __('Cancel Server') }}">
                                     <i class="fas fa-ban"></i>
                                 </button>
                                 <button onclick="handleServerDelete('{{ $server->id }}');"
                                     class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors text-sm"
-                                    data-toggle="tooltip" data-placement="bottom" title="{{ __('Delete Server') }}">
+                                    title="{{ __('Delete Server') }}">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -296,11 +296,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            $('[data-toggle="popover"]').popover();
+            // Tippy tooltips are initialized globally in app.js
         });
 
         $(function() {
-            $('[data-toggle="tooltip"]').tooltip()
+            // Tooltips are now handled by Tippy.js
         })
     </script>
 @endsection
