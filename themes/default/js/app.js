@@ -50,23 +50,73 @@ Alpine.store("theme", {
     },
 });
 
-// Custom SweetAlert2 styling with accent colors
+// SweetAlert2 base styling (kept simple and neutral)
+const swalBaseClasses = {
+    popup: "rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-xl",
+    title: "text-gray-900 dark:text-white font-semibold",
+    htmlContainer: "text-gray-700 dark:text-gray-300",
+    confirmButton:
+        "bg-accent-600 hover:bg-accent-500 text-white font-semibold px-5 py-2.5 rounded-lg transition focus:outline-none focus:ring-2 focus:ring-accent-500",
+    cancelButton:
+        "bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500",
+    actions: "gap-3",
+};
+
 const SwalCustom = Swal.mixin({
+    customClass: swalBaseClasses,
+    buttonsStyling: false,
+});
+
+const SwalToast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3500,
+    timerProgressBar: true,
     customClass: {
-        popup: "rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700",
-        title: "text-gray-900 dark:text-white font-semibold",
-        htmlContainer: "text-gray-700 dark:text-gray-300",
-        confirmButton:
-            "bg-gradient-to-r from-accent-600 to-accent-500 hover:from-accent-500 hover:to-accent-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-accent-500/50 hover:scale-105",
-        cancelButton:
-            "bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200",
-        actions: "gap-3",
+        popup: "rounded-lg bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-700 shadow-lg",
+        title: "text-gray-900 dark:text-white font-semibold text-sm",
+        htmlContainer: "text-gray-700 dark:text-gray-300 text-sm",
+        timerProgressBar: "bg-gray-200 dark:bg-gray-700 h-1",
     },
     buttonsStyling: false,
 });
 
-// Expose custom Swal
+const toastIconColors = {
+    success: "rgb(var(--success))",
+    error: "rgb(var(--danger))",
+    warning: "rgb(var(--warning))",
+    info: "rgb(var(--info))",
+};
+
 window.SwalCustom = SwalCustom;
+window.SwalToast = SwalToast;
+
+window.flashMessage = (type, message, options = {}) => {
+    if (!message) return;
+    const icon = type ?? "info";
+    const isToast = icon !== "error";
+    const baseOptions = {
+        icon,
+        title: message,
+        iconColor: toastIconColors[icon] ?? "rgb(var(--info))",
+    };
+
+    if (isToast) {
+        return SwalToast.fire({
+            ...baseOptions,
+            ...options,
+        });
+    }
+
+    return SwalCustom.fire({
+        ...baseOptions,
+        text: undefined,
+        html: message,
+        showConfirmButton: true,
+        ...options,
+    });
+};
 
 // Start Alpine
 Alpine.start();
@@ -92,6 +142,16 @@ document.addEventListener("DOMContentLoaded", () => {
             allowHTML: true,
             interactive: true,
             maxWidth: "28rem",
+        });
+    }
+
+    if (window.__FLASH__) {
+        Object.entries(window.__FLASH__).forEach(([type, payload]) => {
+            if (!payload) return;
+            const message = Array.isArray(payload)
+                ? payload.join("<br>")
+                : payload;
+            window.flashMessage(type, message);
         });
     }
 });

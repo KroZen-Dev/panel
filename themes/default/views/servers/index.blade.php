@@ -35,185 +35,151 @@
             @endif
         </div>
 
-        <!-- SERVERS GRID -->
+        <!-- SERVERS LIST -->
         @if (count($servers) === 0)
             <div
-                class="flex items-center justify-center py-12 px-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700/50">
+                class="flex items-center justify-center py-16 px-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/50 dark:to-gray-800/50 rounded-xl border border-dashed border-gray-300 dark:border-gray-600">
                 <div class="text-center">
-                    <p class="text-gray-600 dark:text-gray-400 text-lg">{{ __('No servers found') }}</p>
+                    <i class="fas fa-server text-4xl text-gray-400 dark:text-gray-600 mb-3"></i>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg font-medium">{{ __('No servers found') }}</p>
+                    <p class="text-gray-500 dark:text-gray-500 text-sm mt-1">
+                        {{ __('Create your first server to get started') }}</p>
                 </div>
             </div>
         @else
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+                class="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700/50 overflow-hidden shadow-sm">
                 @foreach ($servers as $server)
                     @if ($server->location && $server->node && $server->nest && $server->egg)
                         <div
-                            class="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 flex flex-col">
-                            <!-- Header -->
-                            <div class="px-6 pt-6 pb-4 border-b border-gray-200 dark:border-gray-700/50">
-                                <h5 class="text-lg font-bold text-gray-900 dark:text-white">{{ $server->name }}</h5>
-                            </div>
-
-                            <!-- Body -->
-                            <div class="px-6 py-4 flex-1 space-y-4">
-                                <!-- Status -->
-                                <div class="flex justify-between items-start gap-2">
-                                    <span class="text-gray-600 dark:text-gray-400">{{ __('Status') }}:</span>
-                                    <div>
-                                        @if ($server->suspended)
-                                            <span
-                                                class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-red-500/20 text-red-400">{{ __('Suspended') }}</span>
-                                        @elseif($server->canceled)
-                                            <span
-                                                class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400">{{ __('Canceled') }}</span>
-                                        @else
-                                            <span
-                                                class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400">{{ __('Active') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <!-- Location -->
-                                <div class="flex justify-between items-center gap-2">
-                                    <span class="text-gray-600 dark:text-gray-400">{{ __('Location') }}:</span>
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-gray-900 dark:text-gray-100">{{ $server->location }}</span>
-                                        <i data-tippy-content="{{ __('Node') }}: {{ $server->node }}"
-                                            data-tippy-interactive="true"
-                                            class="fas fa-info-circle text-gray-500 dark:text-gray-400 cursor-help"></i>
-                                    </div>
-                                </div>
-
-                                <!-- Software -->
-                                <div class="flex justify-between items-start gap-2">
-                                    <span class="text-gray-600 dark:text-gray-400">{{ __('Software') }}:</span>
-                                    <span
-                                        class="text-gray-900 dark:text-gray-100 text-right break-words">{{ $server->nest }}</span>
-                                </div>
-
-                                <!-- Specification -->
-                                <div class="flex justify-between items-start gap-2">
-                                    <span class="text-gray-600 dark:text-gray-400">{{ __('Specification') }}:</span>
-                                    <span
-                                        class="text-gray-900 dark:text-gray-100 text-right break-words">{{ $server->egg }}</span>
-                                </div>
-
-                                <!-- Resource Plan -->
-                                <div class="flex justify-between items-start gap-2">
-                                    <span class="text-gray-600 dark:text-gray-400">{{ __('Resource plan') }}:</span>
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-gray-900 dark:text-gray-100">{{ $server->product->name }}</span>
-                                        <i data-tippy-content="{{ __('CPU') }}: {{ $server->product->cpu / 100 }} {{ __('vCores') }} <br/>{{ __('RAM') }}: {{ $server->product->memory }} MB <br/>{{ __('Disk') }}: {{ $server->product->disk }} MB <br/>{{ __('Backups') }}: {{ $server->product->backups }} <br/> {{ __('MySQL Databases') }}: {{ $server->product->databases }} <br/> {{ __('Allocations') }}: {{ $server->product->allocations }} <br/>{{ __('OOM Killer') }}: {{ $server->product->oom_killer ? __('enabled') : __('disabled') }} <br/> {{ __('Billing Period') }}: {{ $server->product->billing_period }}"
-                                            data-tippy-interactive="true"
-                                            class="fas fa-info-circle text-gray-500 dark:text-gray-400 cursor-help"></i>
-                                    </div>
-                                </div>
-
-                                <!-- Next Billing Cycle -->
-                                <div class="flex justify-between items-start gap-2">
-                                    <span class="text-gray-600 dark:text-gray-400 break-words"
-                                        style="hyphens: auto">{{ __('Next Billing Cycle') }}:</span>
-                                    <div class="text-gray-900 dark:text-gray-100 text-right">
-                                        @if ($server->suspended)
-                                            <span>-</span>
-                                        @else
-                                            @switch($server->product->billing_period)
-                                                @case('monthly')
-                                                    {{ \Carbon\Carbon::parse($server->last_billed)->addMonth()->toDayDateTimeString() }}
-                                                @break
-
-                                                @case('weekly')
-                                                    {{ \Carbon\Carbon::parse($server->last_billed)->addWeek()->toDayDateTimeString() }}
-                                                @break
-
-                                                @case('daily')
-                                                    {{ \Carbon\Carbon::parse($server->last_billed)->addDay()->toDayDateTimeString() }}
-                                                @break
-
-                                                @case('hourly')
-                                                    {{ \Carbon\Carbon::parse($server->last_billed)->addHour()->toDayDateTimeString() }}
-                                                @break
-
-                                                @case('quarterly')
-                                                    {{ \Carbon\Carbon::parse($server->last_billed)->addMonths(3)->toDayDateTimeString() }}
-                                                @break
-
-                                                @case('half-annually')
-                                                    {{ \Carbon\Carbon::parse($server->last_billed)->addMonths(6)->toDayDateTimeString() }}
-                                                @break
-
-                                                @case('annually')
-                                                    {{ \Carbon\Carbon::parse($server->last_billed)->addYear()->toDayDateTimeString() }}
-                                                @break
-
-                                                @default
-                                                    {{ __('Unknown') }}
-                                            @endswitch
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <!-- Price -->
-                                <div
-                                    class="flex justify-between items-start gap-2 pt-2 border-t border-gray-200 dark:border-gray-700/50">
-                                    <div>
-                                        <span class="text-gray-600 dark:text-gray-400">{{ __('Price') }}:</span>
-                                        <span class="text-gray-500 dark:text-gray-500 text-sm">
-                                            ({{ $credits_display_name }})
-                                        </span>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="text-gray-500 dark:text-gray-500 text-sm">
-                                            @if ($server->product->billing_period == 'monthly')
-                                                {{ __('per Month') }}
-                                            @elseif($server->product->billing_period == 'half-annually')
-                                                {{ __('per 6 Months') }}
-                                            @elseif($server->product->billing_period == 'quarterly')
-                                                {{ __('per 3 Months') }}
-                                            @elseif($server->product->billing_period == 'annually')
-                                                {{ __('per Year') }}
-                                            @elseif($server->product->billing_period == 'weekly')
-                                                {{ __('per Week') }}
-                                            @elseif($server->product->billing_period == 'daily')
-                                                {{ __('per Day') }}
-                                            @elseif($server->product->billing_period == 'hourly')
-                                                {{ __('per Hour') }}
-                                            @endif
-                                            <i data-tippy-content="{{ __('Your') . ' ' . $credits_display_name . ' ' . __('are reduced') . ' ' . $server->product->billing_period . '. ' . __('This however calculates to ') . Currency::formatForDisplay($server->product->getMonthlyPrice()) . ' ' . $credits_display_name . ' ' . __('per Month') }}"
-                                                data-tippy-interactive="true"
-                                                class="fas fa-info-circle text-gray-500 dark:text-gray-400 cursor-help"></i>
+                            class="px-6 py-5 border-b border-gray-200 dark:border-gray-700/50 last:border-b-0 hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-colors duration-200 group">
+                            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 items-center">
+                                <!-- Server Name & Status -->
+                                <div class="col-span-1">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-500/20 to-accent-600/20 flex items-center justify-center flex-shrink-0 group-hover:from-accent-500/30 group-hover:to-accent-600/30 transition-colors">
+                                            <i class="fas fa-server text-accent-600 dark:text-accent-400"></i>
                                         </div>
-                                        <span class="text-lg font-bold text-gray-900 dark:text-white">
-                                            {{ $server->product->display_price }}
-                                        </span>
+                                        <div class="flex-1 min-w-0">
+                                            <h5 class="text-sm font-bold text-gray-900 dark:text-white truncate">
+                                                {{ $server->name }}</h5>
+                                            <div class="mt-2 flex items-center gap-2">
+                                                @if ($server->suspended)
+                                                    <span
+                                                        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/20">
+                                                        <i class="fas fa-circle-xmark text-xs"></i>
+                                                        {{ __('Suspended') }}
+                                                    </span>
+                                                @elseif($server->canceled)
+                                                    <span
+                                                        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-yellow-500/15 text-yellow-700 dark:text-yellow-400 border border-yellow-500/20">
+                                                        <i class="fas fa-triangle-exclamation text-xs"></i>
+                                                        {{ __('Canceled') }}
+                                                    </span>
+                                                @else
+                                                    <span
+                                                        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-green-500/15 text-green-700 dark:text-green-400 border border-green-500/20">
+                                                        <i class="fas fa-check-circle text-xs"></i>
+                                                        {{ __('Active') }}
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Footer -->
-                            <div
-                                class="flex gap-2 px-6 py-4 border-t border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-900/50">
-                                <a href="{{ $pterodactyl_url }}/server/{{ $server->identifier }}" target="_blank"
-                                    class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-sm"
-                                    title="{{ __('Manage Server') }}">
-                                    <i class="fas fa-tools"></i>
-                                </a>
-                                <a href="{{ route('servers.show', ['server' => $server->id]) }}"
-                                    class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-sm"
-                                    title="{{ __('Server Settings') }}">
-                                    <i class="fas fa-cog"></i>
-                                </a>
-                                <button onclick="handleServerCancel('{{ $server->id }}');"
-                                    class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white font-semibold rounded-lg transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-                                    {{ $server->suspended || $server->canceled ? 'disabled' : '' }}
-                                    title="{{ __('Cancel Server') }}">
-                                    <i class="fas fa-ban"></i>
-                                </button>
-                                <button onclick="handleServerDelete('{{ $server->id }}');"
-                                    class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors text-sm"
-                                    title="{{ __('Delete Server') }}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                <!-- Location & Software -->
+                                <div class="col-span-1">
+                                    <div class="space-y-3">
+                                        <div>
+                                            <p
+                                                class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                                                {{ __('Location') }}</p>
+                                            <div class="flex items-center gap-2 mt-1">
+                                                <p class="text-sm font-semibold text-gray-900 dark:text-white">
+                                                    {{ $server->location }}</p>
+                                                <i data-tippy-content="<div class='font-semibold mb-2'>{{ __('Node Information') }}</div><div class='text-sm'>{{ __('Node') }}: <strong>{{ $server->node }}</strong></div>"
+                                                    data-tippy-interactive="true"
+                                                    class="fas fa-circle-info text-gray-400 dark:text-gray-500 cursor-help text-xs hover:text-gray-600 dark:hover:text-gray-400 transition-colors"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p
+                                                class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                                                {{ __('Software') }}</p>
+                                            <p class="text-sm font-semibold text-gray-900 dark:text-white mt-1">
+                                                {{ $server->nest }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Plan & Specs -->
+                                <div class="col-span-1">
+                                    <div class="space-y-3">
+                                        <div>
+                                            <p
+                                                class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                                                {{ __('Plan') }}</p>
+                                            <div class="flex items-center gap-2 mt-1">
+                                                <p class="text-sm font-semibold text-gray-900 dark:text-white">
+                                                    {{ $server->product->name }}</p>
+                                                <i data-tippy-content="<div class='font-semibold mb-2'>{{ __('Resource Specifications') }}</div><div class='text-sm space-y-1'><div><strong>{{ __('CPU') }}:</strong> {{ $server->product->cpu / 100 }} {{ __('vCores') }}</div><div><strong>{{ __('RAM') }}:</strong> {{ $server->product->memory }} MB</div><div><strong>{{ __('Disk') }}:</strong> {{ $server->product->disk }} MB</div><div><strong>{{ __('Backups') }}:</strong> {{ $server->product->backups }}</div><div><strong>{{ __('Databases') }}:</strong> {{ $server->product->databases }}</div><div><strong>{{ __('Allocations') }}:</strong> {{ $server->product->allocations }}</div><div><strong>{{ __('OOM Killer') }}:</strong> {{ $server->product->oom_killer ? __('Enabled') : __('Disabled') }}</div><div><strong>{{ __('Billing') }}:</strong> {{ $server->product->billing_period }}</div></div>"
+                                                    data-tippy-interactive="true"
+                                                    class="fas fa-circle-info text-gray-400 dark:text-gray-500 cursor-help text-xs hover:text-gray-600 dark:hover:text-gray-400 transition-colors"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Price & Billing -->
+                                <div class="col-span-1">
+                                    <div>
+                                        <p
+                                            class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                                            {{ __('Price') }}</p>
+                                        <div class="mt-2 space-y-1">
+                                            <div class="text-2xl font-bold text-accent-600 dark:text-accent-400">
+                                                {{ $server->product->display_price }}
+                                            </div>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">per
+                                                {{ $server->product->billing_period }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Actions -->
+                                <div class="col-span-1 flex flex-col gap-2">
+                                    <div class="flex gap-2">
+                                        <a href="{{ $pterodactyl_url }}/server/{{ $server->identifier }}" target="_blank"
+                                            class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-200 text-xs shadow-sm hover:shadow-md"
+                                            data-tippy-content="{{ __('Manage Server') }}">
+                                            <i class="fas fa-gamepad"></i>
+                                            <span class="hidden sm:inline">{{ __('Manage') }}</span>
+                                        </a>
+                                        <a href="{{ route('servers.show', ['server' => $server->id]) }}"
+                                            class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-slate-600 hover:bg-slate-700 text-white font-medium rounded-lg transition-all duration-200 text-xs shadow-sm hover:shadow-md"
+                                            data-tippy-content="{{ __('Server Settings') }}">
+                                            <i class="fas fa-sliders"></i>
+                                            <span class="hidden sm:inline">{{ __('Settings') }}</span>
+                                        </a>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button onclick="handleServerCancel('{{ $server->id }}');"
+                                            class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-all duration-200 text-xs disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
+                                            {{ $server->suspended || $server->canceled ? 'disabled' : '' }}
+                                            data-tippy-content="{{ __('Cancel Server') }}">
+                                            <i class="fas fa-pause text-xs"></i>
+                                            <span class="hidden sm:inline">{{ __('Cancel') }}</span>
+                                        </button>
+                                        <button onclick="handleServerDelete('{{ $server->id }}');"
+                                            class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-all duration-200 text-xs shadow-sm hover:shadow-md"
+                                            data-tippy-content="{{ __('Delete Server') }}">
+                                            <i class="fas fa-trash text-xs"></i>
+                                            <span class="hidden sm:inline">{{ __('Delete') }}</span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endif

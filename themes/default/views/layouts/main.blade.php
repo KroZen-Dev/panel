@@ -137,103 +137,12 @@
         });
     </script>
     <script>
-        @if (Session::has('error'))
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                html: '{{ Session::get('error') }}',
-                customClass: {
-                    popup: "rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700",
-                    title: "text-gray-900 dark:text-white font-semibold",
-                    htmlContainer: "text-gray-700 dark:text-gray-300",
-                    confirmButton: "bg-gradient-to-r from-accent-600 to-accent-500 hover:from-accent-500 hover:to-accent-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-accent-500/50 hover:scale-105",
-                    cancelButton: "bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200",
-                    actions: "gap-3",
-                },
-                buttonsStyling: false,
-            })
-        @endif
-        @if (Session::has('success'))
-            Swal.fire({
-                icon: 'success',
-                title: '{{ Session::get('success') }}',
-                position: 'top-end',
-                showConfirmButton: false,
-                background: 'linear-gradient(135deg, rgb(var(--gray-800)) 0%, rgb(var(--gray-900)) 100%)',
-                color: '#fff',
-                toast: true,
-                timer: 3000,
-                timerProgressBar: true,
-                customClass: {
-                    popup: 'rounded-xl border shadow-2xl',
-                    timerProgressBar: 'bg-gradient-to-r',
-                },
-                didOpen: (toast) => {
-                    toast.style.borderColor = 'rgb(var(--success) / 0.3)';
-                    const progressBar = toast.querySelector('.swal2-timer-progress-bar');
-                    if (progressBar) {
-                        progressBar.style.background =
-                            'linear-gradient(to right, rgb(var(--success)), rgb(var(--info)))';
-                    }
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-        @endif
-        @if (Session::has('info'))
-            Swal.fire({
-                icon: 'info',
-                title: '{{ Session::get('info') }}',
-                position: 'top-end',
-                showConfirmButton: false,
-                background: 'linear-gradient(135deg, rgb(var(--gray-800)) 0%, rgb(var(--gray-900)) 100%)',
-                color: '#fff',
-                toast: true,
-                timer: 3000,
-                timerProgressBar: true,
-                customClass: {
-                    popup: 'rounded-xl border shadow-2xl',
-                    timerProgressBar: 'bg-gradient-to-r',
-                },
-                didOpen: (toast) => {
-                    toast.style.borderColor = 'rgb(var(--accent-500) / 0.3)';
-                    const progressBar = toast.querySelector('.swal2-timer-progress-bar');
-                    if (progressBar) {
-                        progressBar.style.background =
-                            'linear-gradient(to right, rgb(var(--accent-500)), rgb(var(--accent-600)))';
-                    }
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-        @endif
-        @if (Session::has('warning'))
-            Swal.fire({
-                icon: 'warning',
-                title: '{{ Session::get('warning') }}',
-                position: 'top-end',
-                showConfirmButton: false,
-                background: 'linear-gradient(135deg, rgb(var(--gray-800)) 0%, rgb(var(--gray-900)) 100%)',
-                color: '#fff',
-                toast: true,
-                timer: 3000,
-                timerProgressBar: true,
-                customClass: {
-                    popup: 'rounded-xl border shadow-2xl',
-                    timerProgressBar: 'bg-gradient-to-r',
-                },
-                didOpen: (toast) => {
-                    toast.style.borderColor = 'rgb(var(--warning) / 0.3)';
-                    const progressBar = toast.querySelector('.swal2-timer-progress-bar');
-                    if (progressBar) {
-                        progressBar.style.background =
-                            'linear-gradient(to right, rgb(var(--warning)), rgb(var(--danger)))';
-                    }
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-        @endif
+        window.__FLASH__ = {
+            error: @json(Session::get('error')),
+            success: @json(Session::get('success')),
+            info: @json(Session::get('info')),
+            warning: @json(Session::get('warning')),
+        };
     </script>
 </body>
 
