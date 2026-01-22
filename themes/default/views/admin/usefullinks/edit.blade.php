@@ -5,11 +5,11 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ __('Useful Links') }}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{ route('home') }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Dashboard') }}</a>
+                <a href="{{ route('home') }}" class="hover:text-accent-600 dark:hover:text-accent-400">{{ __('Dashboard') }}</a>
             </li>
             <li>/</li>
             <li>
-                <a href="{{ route('admin.usefullinks.index') }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Useful Links') }}</a>
+                <a href="{{ route('admin.usefullinks.index') }}" class="hover:text-accent-600 dark:hover:text-accent-400">{{ __('Useful Links') }}</a>
             </li>
             <li>/</li>
             <li>
@@ -31,10 +31,10 @@
                                     <label for="icon" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Icon class name') }}</label>
                                     <input value="{{ $link->icon }}" id="icon" name="icon" type="text"
                                            placeholder="fas fa-user"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('icon') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('icon') border-red-500 @enderror"
                                            required="required">
                                     <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                                        {{ __('You can find available free icons') }} <a target="_blank" href="https://fontawesome.com/v5.15/icons?d=gallery&p=2" class="text-blue-600 hover:underline dark:text-blue-400">here</a>
+                                        {{ __('You can find available free icons') }} <a target="_blank" href="https://fontawesome.com/v5.15/icons?d=gallery&p=2" class="text-accent-600 hover:underline dark:text-accent-400">here</a>
                                     </div>
                                     @error('icon')
                                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -84,7 +84,7 @@
                                 </div>
 
                                 <div class="flex justify-end mt-6">
-                                    <button type="submit" class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500">
+                                    <button type="submit" class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:hover:bg-accent-500">
                                         {{ __('Submit') }}
                                     </button>
                                 </div>

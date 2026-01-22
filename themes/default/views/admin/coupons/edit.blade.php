@@ -121,7 +121,7 @@
                                             type="number"
                                             step="any"
                                             min="1"
-                                            class="block w-full rounded-none rounded-l-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm @error('value') border-red-500 @enderror"
+                                            class="block w-full rounded-none rounded-l-md border-gray-300 focus:border-accent-500 focus:ring-accent-500 sm:text-sm @error('value') border-red-500 @enderror"
                                             value="{{ $coupon->type == 'amount' ? Currency::formatForForm($coupon->value) : $coupon->value }}"
                                         >
                                         <span id="input_percentage" class="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">

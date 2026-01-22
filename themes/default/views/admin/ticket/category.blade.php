@@ -5,11 +5,11 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ __('Ticket Categories') }}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{ route('home') }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Dashboard') }}</a>
+                <a href="{{ route('home') }}" class="hover:text-accent-600 dark:hover:text-accent-400">{{ __('Dashboard') }}</a>
             </li>
             <li>/</li>
             <li>
-                <a href="{{ route('admin.ticket.category.index') }}" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">{{ __('Ticket Categories') }}</a>
+                <a href="{{ route('admin.ticket.category.index') }}" class="text-gray-700 hover:text-accent-600 dark:text-gray-300 dark:hover:text-accent-400">{{ __('Ticket Categories') }}</a>
             </li>
         </ol>
     </div>

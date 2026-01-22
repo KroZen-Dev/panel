@@ -20,7 +20,7 @@
                     <h5 class="text-lg font-medium text-gray-800 dark:text-white">
                         <i class="fas fa-handshake mr-2 text-gray-500 dark:text-gray-400"></i>{{__('Partners')}}
                     </h5>
-                    <a href="{{route('admin.partners.create')}}" class="inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500">
+                    <a href="{{route('admin.partners.create')}}" class="inline-flex items-center rounded-md bg-accent-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:hover:bg-accent-500">
                         <i class="fas fa-plus mr-1"></i>{{__('Create new')}}
                     </a>
                 </div>

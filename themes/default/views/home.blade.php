@@ -338,8 +338,8 @@
                                             $iconClass = 'text-emerald-400';
                                             $icon = 'fa-money-bill';
                                         } elseif (str_starts_with($log->description, 'updated')) {
-                                            $bgClass = 'bg-blue-500/10';
-                                            $iconClass = 'text-blue-400';
+                                            $bgClass = 'bg-accent-500/10';
+                                            $iconClass = 'text-accent-400';
                                             $icon = 'fa-pen';
                                         }
                                     @endphp

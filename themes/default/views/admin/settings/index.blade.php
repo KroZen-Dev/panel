@@ -7,10 +7,10 @@
         </div>
         <div class="col-sm-6">
             <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 justify-end">
-                <li class="breadcrumb-item"><a href="" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Dashboard') }}</a></li>
+                <li class="breadcrumb-item"><a href="" class="hover:text-accent-600 dark:hover:text-accent-400">{{ __('Dashboard') }}</a></li>
                 <li>/</li>
                 <li class="breadcrumb-item">
-                    <a href="{{ route('admin.settings.index') }}" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">{{ __('Settings') }}</a>
+                    <a href="{{ route('admin.settings.index') }}" class="text-gray-700 hover:text-accent-600 dark:text-gray-300 dark:hover:text-accent-400">{{ __('Settings') }}</a>
                 </li>
             </ol>
         </div>
@@ -51,7 +51,7 @@
                                             @canany(['settings.' . strtolower($category) . '.read', 'settings.' . strtolower($category) . '.write'])
                                                 <li>
                                                     <a href="#{{ $category }}"
-                                                       class="nav-link flex items-center px-4 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white {{ $loop->first ? 'active bg-blue-50 text-blue-700 dark:bg-gray-700 dark:text-white' : '' }}"
+                                                       class="nav-link flex items-center px-4 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white {{ $loop->first ? 'active bg-accent-50 text-accent-700 dark:bg-accent-800 dark:text-white' : '' }}"
                                                        data-toggle="pill" role="tab">
                                                         <i class="nav-icon mr-3 {{ $options['category_icon'] ?? 'fas fa-cog' }}"></i>
                                                         {{ $category }}
@@ -101,7 +101,7 @@
                                                 <div class="w-full bg-white dark:bg-gray-700 rounded-lg shadow p-4">
                                                     <h3 class="text-center text-lg font-medium text-gray-900 dark:text-white mb-4">{{ __('FavIcon') }}</h3>
                                                     <img src="{{ $images['favicon'] }}" class="mx-auto block mb-4 w-12" alt="Favicon">
-                                                    <input type="file" accept="image/x-icon" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:text-gray-300 dark:file:bg-gray-600 dark:file:text-gray-200" name="favicon" id="favicon">
+                                                    <input type="file" accept="image/x-icon" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent-50 file:text-accent-700 hover:file:bg-accent-100 dark:text-gray-300 dark:file:bg-gray-600 dark:file:text-gray-200" name="favicon" id="favicon">
                                                 </div>
                                             </div>
 
@@ -112,7 +112,7 @@
                                                 <div class="w-full bg-white dark:bg-gray-700 rounded-lg shadow p-4">
                                                     <h3 class="text-center text-lg font-medium text-gray-900 dark:text-white mb-4">{{ __('Icon') }}</h3>
                                                     <img src="{{ $images['icon'] }}" class="mx-auto block mb-4 w-12" alt="Icon">
-                                                    <input type="file" accept="image/png,image/jpeg,image/jpg" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:text-gray-300 dark:file:bg-gray-600 dark:file:text-gray-200" name="icon" id="icon">
+                                                    <input type="file" accept="image/png,image/jpeg,image/jpg" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent-50 file:text-accent-700 hover:file:bg-accent-100 dark:text-gray-300 dark:file:bg-gray-600 dark:file:text-gray-200" name="icon" id="icon">
                                                 </div>
                                             </div>
 
@@ -123,13 +123,13 @@
                                                 <div class="w-full bg-white dark:bg-gray-700 rounded-lg shadow p-4">
                                                     <h3 class="text-center text-lg font-medium text-gray-900 dark:text-white mb-4">{{ __('Login-page Logo') }}</h3>
                                                     <img src="{{ $images['logo'] }}" class="mx-auto block mb-4 w-12" alt="Logo">
-                                                    <input type="file" accept="image/png,image/jpeg,image/jpg" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:text-gray-300 dark:file:bg-gray-600 dark:file:text-gray-200" name="logo" id="logo">
+                                                    <input type="file" accept="image/png,image/jpeg,image/jpg" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent-50 file:text-accent-700 hover:file:bg-accent-100 dark:text-gray-300 dark:file:bg-gray-600 dark:file:text-gray-200" name="logo" id="logo">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="mt-6 flex justify-end">
-                                            <button type="submit" class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500">{{ __('Save') }}</button>
+                                            <button type="submit" class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:hover:bg-accent-500">{{ __('Save') }}</button>
                                         </div>
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
@@ -163,26 +163,26 @@
                                                         <div class="md:col-span-2">
                                                             @switch($value)
                                                                 @case($value['type'] == 'string')
-                                                                    <input type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                                                    <input type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                                                            name="{{ $key }}" value="{{ $value['value'] }}">
                                                                     @break
 
                                                                 @case($value['type'] == 'password')
-                                                                    <input type="password" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                                                    <input type="password" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                                                            name="{{ $key }}" value="{{ $value['value'] }}">
                                                                     @break
 
                                                                 @case($value['type'] == 'boolean')
                                                                     <div class="flex items-center">
                                                                         <input type="checkbox" name="{{ $key }}" value="{{ $value['value'] }}"
-                                                                               class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
+                                                                               class="h-4 w-4 rounded border-gray-300 text-accent-600 focus:ring-accent-500 dark:bg-gray-700 dark:border-gray-600"
                                                                                {{ $value['value'] ? 'checked' : '' }}>
                                                                     </div>
                                                                     @break
 
                                                                 @case($value['type'] == 'number')
                                                                     <input type="number" step="{{ $value['step'] ?? '1' }}"
-                                                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                                                            name="{{ $key }}" value="{{ isset($value['converted_value']) ? $value['converted_value'] : $value['value'] }}">
                                                                     @break
 
@@ -217,7 +217,7 @@
                                                                     @break
 
                                                                 @case($value['type'] == 'textarea')
-                                                                    <textarea class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                                                    <textarea class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                                                               name="{{ $key }}" rows="3">{{ $value['value'] }}</textarea>
                                                                     @break
                                                             @endswitch
@@ -230,10 +230,10 @@
                                                 @endforeach
 
                                                 <div class="mt-6 flex justify-end">
-                                                    <button type="submit" class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500">
+                                                    <button type="submit" class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:hover:bg-accent-500">
                                                         {{ __('Save') }}
                                                     </button>
-                                                    <button type="reset" class="ml-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-gray-600 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-500">
+                                                    <button type="reset" class="ml-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:bg-gray-600 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-500">
                                                         Reset
                                                     </button>
                                                 </div>

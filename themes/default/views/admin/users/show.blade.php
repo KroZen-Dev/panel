@@ -5,11 +5,11 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ __('Users') }}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{ route('home') }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Dashboard') }}</a>
+                <a href="{{ route('home') }}" class="hover:text-accent-600 dark:hover:text-accent-400">{{ __('Dashboard') }}</a>
             </li>
             <li>/</li>
             <li>
-                <a href="{{ route('admin.users.index') }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Users') }}</a>
+                <a href="{{ route('admin.users.index') }}" class="hover:text-accent-600 dark:hover:text-accent-400">{{ __('Users') }}</a>
             </li>
             <li>/</li>
             <li>
@@ -146,7 +146,7 @@
                         @foreach ($referrals as $referral)
                             <div class="bg-gray-50 rounded p-3 flex justify-between items-center dark:bg-gray-700">
                                 <span class="text-sm text-gray-600 dark:text-gray-300">ID: {{ $referral->id }}</span>
-                                <a href="{{ route('admin.users.show', $referral->id) }}" class="text-blue-600 hover:underline flex items-center dark:text-blue-400">
+                                <a href="{{ route('admin.users.show', $referral->id) }}" class="text-accent-600 hover:underline flex items-center dark:text-accent-400">
                                     <i class="fas fa-user-check mr-1"></i> {{ $referral->name }}
                                 </a>
                                 <span class="text-xs text-gray-500 flex items-center dark:text-gray-400">

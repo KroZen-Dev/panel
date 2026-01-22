@@ -5,11 +5,11 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{__('Users')}}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{route('home')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Dashboard')}}</a>
+                <a href="{{route('home')}}" class="hover:text-accent-600 dark:hover:text-accent-400">{{__('Dashboard')}}</a>
             </li>
             <li>/</li>
             <li>
-                <a href="{{route('admin.users.index')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Users')}}</a>
+                <a href="{{route('admin.users.index')}}" class="hover:text-accent-600 dark:hover:text-accent-400">{{__('Users')}}</a>
             </li>
             <li>/</li>
             <li>
@@ -30,7 +30,7 @@
                                 <div class="mb-4">
                                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('Username')}}</label>
                                     <input value="{{$user->name}}" id="name" name="name" type="text"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('name') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('name') border-red-500 @enderror"
                                            required="required">
                                     @error('name')
                                         <p class="mt-1 text-xs text-red-500">{{$message}}</p>
@@ -40,7 +40,7 @@
                                 <div class="mb-4">
                                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('Email')}}</label>
                                     <input value="{{$user->email}}" id="email" name="email" type="text"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('email') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('email') border-red-500 @enderror"
                                            required="required">
                                     @error('email')
                                         <p class="mt-1 text-xs text-red-500">{{$message}}</p>
@@ -50,7 +50,7 @@
                                 <div class="mb-4">
                                     <label for="pterodactyl_id" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('Pterodactyl ID')}}</label>
                                     <input value="{{$user->pterodactyl_id}}" id="pterodactyl_id" name="pterodactyl_id" type="number"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('pterodactyl_id') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('pterodactyl_id') border-red-500 @enderror"
                                            required="required">
                                     @error('pterodactyl_id')
                                         <p class="mt-1 text-xs text-red-500">{{$message}}</p>
@@ -64,7 +64,7 @@
                                 <div class="mb-4">
                                     <label for="credits" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ $credits_display_name }}</label>
                                     <input value="{{ Currency::formatForForm($user->credits) }}" id="credits" name="credits" step="any" min="0" max="99999999" type="number"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('credits') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('credits') border-red-500 @enderror"
                                            required="required">
                                     @error('credits')
                                         <p class="mt-1 text-xs text-red-500">{{$message}}</p>
@@ -96,7 +96,7 @@
                                 <div class="mb-6">
                                     <label for="referral_code" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('Referral-Code')}}</label>
                                     <input value="{{$user->referral_code}}" id="referral_code" name="referral_code" type="text"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('referral_code') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('referral_code') border-red-500 @enderror"
                                            required="required">
                                     @error('referral_code')
                                         <p class="mt-1 text-xs text-red-500">{{$message}}</p>
@@ -104,7 +104,7 @@
                                 </div>
 
                                 <div class="flex justify-end">
-                                    <button type="submit" class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500">
+                                    <button type="submit" class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:hover:bg-accent-500">
                                         {{__('Submit')}}
                                     </button>
                                 </div>
@@ -135,7 +135,7 @@
                                     @enderror
                                 </div>
                                 <div class="flex justify-end">
-                                     <button type="submit" class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500">
+                                     <button type="submit" class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:hover:bg-accent-500">
                                         {{__('Update Password')}}
                                     </button>
                                 </div>

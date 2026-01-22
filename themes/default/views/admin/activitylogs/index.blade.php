@@ -49,7 +49,7 @@
                             <form method="get" action="{{route('admin.activitylogs.index')}}" class="flex gap-2">
                                 @csrf
                                 <input type="text"
-                                       class="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                       class="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:border-accent-500 focus:outline-none focus:ring-1 focus:ring-accent-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                                        value="{{ request()->input('search') }}"
                                        name="search"
                                        placeholder="Search">

@@ -25,7 +25,7 @@
                         <i class="mr-2 fas fa-sliders-h text-gray-500 dark:text-gray-400"></i>{{ __('Product') }}
                     </h5>
                     <div class="flex space-x-2">
-                        <a href="{{ route('admin.products.edit', $product->id) }}" class="rounded bg-blue-500 px-2 py-1 text-sm text-white hover:bg-blue-600" data-toggle="tooltip" title="Edit">
+                        <a href="{{ route('admin.products.edit', $product->id) }}" class="rounded bg-accent-500 px-2 py-1 text-sm text-white hover:bg-accent-600" data-toggle="tooltip" title="Edit">
                             <i class="fas fa-pen"></i>
                         </a>
                         <form class="inline-block" onsubmit="return submitResult();" method="post" action="{{ route('admin.products.destroy', $product->id) }}">

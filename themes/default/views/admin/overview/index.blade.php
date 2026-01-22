@@ -69,7 +69,7 @@
                 <div class="overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-800">
                     <div class="p-5">
                         <div class="flex items-center">
-                            <div class="flex-shrink-0 rounded-md bg-blue-600 p-3">
+                            <div class="flex-shrink-0 rounded-md bg-accent-600 p-3">
                                 <i class="fas fa-users text-white"></i>
                             </div>
                             <div class="ml-5 w-0 flex-1">
@@ -138,7 +138,7 @@
                         <h3 class="text-lg font-medium text-gray-900 dark:text-white">
                             <i class="mr-2 fas fa-kiwi-bird text-gray-500 dark:text-gray-400"></i>{{__('Pterodactyl')}}
                         </h3>
-                        <a href="{{route('admin.overview.sync')}}" class="inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:hover:bg-blue-500">
+                        <a href="{{route('admin.overview.sync')}}" class="inline-flex items-center rounded-md bg-accent-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 dark:hover:bg-accent-500">
                             <i class="mr-2 fas fa-sync"></i>{{__('Sync')}}
                         </a>
                     </div>
