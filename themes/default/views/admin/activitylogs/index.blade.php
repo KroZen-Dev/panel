@@ -5,11 +5,11 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ __('Activity Logs')}}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{route('home')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Dashboard')}}</a>
+                <a href="{{route('home')}}" class="hover:text-accent-500 dark:hover:text-accent-400">{{ __('Dashboard')}}</a>
             </li>
             <li>/</li>
             <li>
-                <a href="{{route('admin.activitylogs.index')}}" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">{{ __('Activity Logs')}}</a>
+                <a href="{{route('admin.activitylogs.index')}}" class="text-gray-700 hover:text-accent-500 dark:text-gray-300 dark:hover:text-accent-400">{{ __('Activity Logs')}}</a>
             </li>
         </ol>
     </div>
@@ -75,7 +75,7 @@
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700 dark:text-gray-200">
                                         @if($log->causer)
-                                            <a href='/admin/users/{{$log->causer_id}}' class="text-blue-600 hover:underline dark:text-blue-400">{{json_decode($log->causer)->name}}</a>
+                                            <a href='/admin/users/{{$log->causer_id}}' class="text-accent-600 hover:underline dark:text-accent-400">{{json_decode($log->causer)->name}}</a>
                                         @else
                                             <span class="text-gray-500 dark:text-gray-400">System</span>
                                         @endif
@@ -92,7 +92,7 @@
                                                 @elseif(str_starts_with($log->description, 'gained'))
                                                     <i class="fas fa-money-bill mr-2 text-green-500 dark:text-green-400"></i>
                                                 @elseif(str_starts_with($log->description, 'updated'))
-                                                    <i class="fas fa-pen mr-2 text-blue-500 dark:text-blue-400"></i>
+                                                    <i class="fas fa-pen mr-2 text-accent-500 dark:text-accent-400"></i>
                                                 @endif
                                                 {{ explode('\\', $log->subject_type)[2] ?? '' }} {{ ucfirst($log->description) }}
                                             </span>

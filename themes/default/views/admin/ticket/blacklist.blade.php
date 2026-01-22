@@ -9,7 +9,7 @@
             </li>
             <li>/</li>
             <li>
-                <a href="{{ route('admin.ticket.blacklist') }}" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">{{ __('Ticket Blacklist') }}</a>
+                <a href="{{ route('admin.ticket.blacklist') }}" class="text-gray-700 hover:text-accent-500 dark:text-gray-300 dark:hover:text-accent-400">{{ __('Ticket Blacklist') }}</a>
             </li>
         </ol>
     </div>
@@ -62,7 +62,7 @@
                                         {{ __('User') }}:
                                         <i data-toggle="popover" data-trigger="hover" data-content="{{ __('Please note, the blacklist will make the user unable to make a ticket/reply again') }}" class="fas fa-info-circle ml-1 text-gray-400 cursor-help dark:text-gray-500"></i>
                                     </label>
-                                    <select id="user_id" style="width:100%" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('user_id') border-red-500 @enderror" name="user_id" required autocomplete="off">
+                                    <select id="user_id" style="width:100%" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('user_id') border-red-500 @enderror" name="user_id" required autocomplete="off">
                                     </select>
                                     @error('user_id')
                                     <p class="mt-1 text-xs text-red-500">{{$message}}</p>
@@ -71,7 +71,7 @@
 
                                 <div class="mb-4">
                                     <label for="reason" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__("Reason")}}</label>
-                                    <input id="reason" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" name="reason" placeholder="Input Some Reason" required>
+                                    <input id="reason" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" name="reason" placeholder="Input Some Reason" required>
                                 </div>
 
                                 <div class="flex justify-end">

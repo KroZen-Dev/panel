@@ -9,7 +9,7 @@
             </li>
             <li>/</li>
             <li>
-                <a href="{{ route('admin.products.index') }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Products') }}</a>
+                <a href="{{ route('admin.products.index') }}" class="hover:text-accent-500 dark:hover:text-accent-400">{{ __('Products') }}</a>
             </li>
             <li>/</li>
             <li>
@@ -31,7 +31,7 @@
                                 
                                 <div class="mb-4 flex flex-row-reverse">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="disabled" id="switch1" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                        <input type="checkbox" name="disabled" id="switch1" class="h-4 w-4 rounded border-gray-300 text-accent-600 focus:ring-accent-500 dark:bg-gray-700 dark:border-gray-600">
                                         <label class="ml-2 block text-sm text-gray-900 cursor-pointer dark:text-gray-300" for="switch1">
                                             {{ __('Disabled') }}
                                             <i class="fas fa-info-circle ml-1 text-gray-400 cursor-help dark:text-gray-500"
@@ -45,7 +45,7 @@
                                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Name') }}</label>
                                     <input value="{{ $product->name ?? old('name') }}" id="name"
                                            name="name" type="text"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('name') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('name') border-red-500 @enderror"
                                            required="required">
                                     @error('name')
                                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -71,7 +71,7 @@
                                             {{ __('Billing Period') }}
                                             <i class="fas fa-info-circle ml-1 text-gray-400 cursor-help dark:text-gray-500" data-toggle="popover" data-trigger="hover" data-content="{{ __('Period when the user will be charged for the given price') }}"></i>
                                         </label>
-                                        <select id="billing_period" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('billing_period') border-red-500 @enderror"
+                                        <select id="billing_period" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('billing_period') border-red-500 @enderror"
                                                 name="billing_period" required autocomplete="off">
                                             <option value="hourly" @selected(old('billing_period', $product->billing_period ?? '') == 'hourly')>{{ __('Hourly') }}</option>
                                             <option value="daily" @selected(old('billing_period', $product->billing_period ?? '') == 'daily')>{{ __('Daily') }}</option>
@@ -236,7 +236,7 @@
 
                                 <div class="mb-4">
                                     <div class="flex items-center">
-                                        <input type="checkbox" value="1" id="oom_killer" name="oom_killer" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                        <input type="checkbox" value="1" id="oom_killer" name="oom_killer" class="h-4 w-4 rounded border-gray-300 text-accent-600 focus:ring-accent-500 dark:bg-gray-700 dark:border-gray-600">
                                         <label class="ml-2 block text-sm text-gray-900 cursor-pointer dark:text-gray-300" for="oom_killer">
                                             {{ __('OOM Killer') }}
                                             <i class="fas fa-info-circle ml-1 text-gray-400 cursor-help dark:text-gray-500" data-toggle="popover" data-trigger="hover" data-content="{{ __('Enable or Disable the OOM Killer for this Product.') }}"></i>

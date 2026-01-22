@@ -324,7 +324,7 @@
                             <div
                                 class="p-4 bg-accent-50 dark:bg-accent-800/20 rounded-lg border border-accent-200 dark:border-accent-800/30">
                                 <p class="text-sm text-gray-700 dark:text-gray-300">
-                                    <strong class="text-blue-700 dark:text-blue-400">{{ __('Current Product') }}:</strong>
+                                    <strong class="text-accent-700 dark:text-accent-400">{{ __('Current Product') }}:</strong>
                                     <span class="ml-1">{{ $server->product->name }}</span>
                                 </p>
                             </div>

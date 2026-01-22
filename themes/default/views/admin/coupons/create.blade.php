@@ -5,11 +5,11 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{__('Coupon')}}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{route('home')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Dashboard')}}</a>
+                <a href="{{route('home')}}" class="hover:text-accent-500 dark:hover:text-accent-400">{{__('Dashboard')}}</a>
             </li>
             <li>/</li>
             <li>
-                <a href="{{route('admin.coupons.index')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Coupons')}}</a>
+                <a href="{{route('admin.coupons.index')}}" class="hover:text-accent-500 dark:hover:text-accent-400">{{__('Coupons')}}</a>
             </li>
             <li>/</li>
             <li>
@@ -39,7 +39,7 @@
                                             type="checkbox"
                                             id="random_codes"
                                             name="random_codes"
-                                            class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
+                                            class="h-4 w-4 rounded border-gray-300 text-accent-600 focus:ring-accent-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
                                         >
                                         <label for="random_codes" class="ml-2 block text-sm text-gray-900 cursor-pointer dark:text-gray-300">
                                             {{ __('Random Codes') }}
@@ -47,7 +47,7 @@
                                                 data-toggle="popover"
                                                 data-trigger="hover"
                                                 data-content="{{__('Replace the creation of a single code with several at once with a custom field.')}}"
-                                                class="fas fa-info-circle text-gray-400 ml-1 hover:text-blue-500 cursor-help dark:text-gray-500 dark:hover:text-blue-400">
+                                                class="fas fa-info-circle text-gray-400 ml-1 hover:text-accent-500 cursor-help dark:text-gray-500 dark:hover:text-accent-400">
                                             </i>
                                         </label>
                                     </div>
@@ -82,7 +82,7 @@
                                         id="code"
                                         name="code"
                                         placeholder="SUMMER"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('code') border-red-500 @enderror"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('code') border-red-500 @enderror"
                                         value="{{ old('code') }}"
                                     >
                                     @error('code')

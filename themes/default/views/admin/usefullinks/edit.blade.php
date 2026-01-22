@@ -44,7 +44,7 @@
                                 <div class="mb-4">
                                     <label for="title" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Title') }}</label>
                                     <input value="{{ $link->title }}" id="title" name="title" type="text"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('title') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('title') border-red-500 @enderror"
                                            required="required">
                                     @error('title')
                                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -54,7 +54,7 @@
                                 <div class="mb-4">
                                     <label for="link" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Link') }}</label>
                                     <input value="{{ $link->link }}" id="link" name="link" type="text"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('link') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('link') border-red-500 @enderror"
                                            required="required">
                                     @error('link')
                                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -63,7 +63,7 @@
 
                                 <div class="mb-4">
                                     <label for="description" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Description') }}</label>
-                                    <textarea id="description" name="description" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('description') border-red-500 @enderror">{{ $link->description }}</textarea>
+                                    <textarea id="description" name="description" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('description') border-red-500 @enderror">{{ $link->description }}</textarea>
                                     @error('description')
                                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                                     @enderror
@@ -71,7 +71,7 @@
 
                                 <div class="mb-4">
                                     <label for="position" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Position') }}</label>
-                                    <select id="position" style="width:100%" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('position') border-red-500 @enderror" name="position[]" required multiple autocomplete="off">
+                                    <select id="position" style="width:100%" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('position') border-red-500 @enderror" name="position[]" required multiple autocomplete="off">
                                         @foreach ($positions as $position)
                                             <option id="{{$position->value}}" value="{{ $position->value }}" @if (strpos($link->position, $position->value) !== false)  selected @endif>
                                                 {{ __($position->value) }}

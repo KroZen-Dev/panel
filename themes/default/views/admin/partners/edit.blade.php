@@ -5,11 +5,11 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{__('Partners')}}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{route('home')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Dashboard')}}</a>
+                <a href="{{route('home')}}" class="hover:text-accent-500 dark:hover:text-accent-400">{{__('Dashboard')}}</a>
             </li>
             <li>/</li>
             <li>
-                <a href="{{route('admin.partners.index')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Partners')}}</a>
+                <a href="{{route('admin.partners.index')}}" class="hover:text-accent-500 dark:hover:text-accent-400">{{__('Partners')}}</a>
             </li>
             <li>/</li>
             <li>
@@ -35,7 +35,7 @@
                                 <div class="mb-4">
                                     <label for="user_id" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('User')}}</label>
                                     <select id="user_id" style="width:100%"
-                                            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('user') border-red-500 @enderror" name="user_id" autocomplete="off">
+                                            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('user') border-red-500 @enderror" name="user_id" autocomplete="off">
                                         @foreach($users as $user)
                                             <option @if($partners->contains('user_id' , $user->id)&&$partner->user_id!=$user->id) disabled @endif
                                             @if($partner->user_id==$user->id) selected @endif
@@ -55,7 +55,7 @@
                                     </label>
                                     <input value="{{$partner->partner_discount}}" placeholder="{{__('Discount in percent')}}" id="partner_discount" name="partner_discount"
                                            type="number" step="any" min="0" max="100"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('partner_discount') border-red-500 @enderror">
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('partner_discount') border-red-500 @enderror">
                                     @error('partner_discount')
                                     <p class="mt-1 text-xs text-red-500">{{$message}}</p>
                                     @enderror
@@ -69,7 +69,7 @@
                                     </label>
                                     <div class="flex rounded-md shadow-sm">
                                         <input value="{{$partner->registered_user_discount}}" placeholder="Discount in percent" id="registered_user_discount" name="registered_user_discount"
-                                               type="number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('registered_user_discount') border-red-500 @enderror"
+                                               type="number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('registered_user_discount') border-red-500 @enderror"
                                                required="required">
                                     </div>
                                     @error('registered_user_discount')
@@ -92,7 +92,7 @@
                                 </div>
 
                                 <div class="flex justify-end mt-6">
-                                    <button type="submit" class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500">
+                                    <button type="submit" class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:hover:bg-accent-500">
                                         {{__('Submit')}}
                                     </button>
                                 </div>

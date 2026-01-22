@@ -5,7 +5,7 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{__('Application API')}}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{route('home')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Dashboard')}}</a>
+                <a href="{{route('home')}}" class="hover:text-accent-500 dark:hover:text-accent-400">{{__('Dashboard')}}</a>
             </li>
             <li>/</li>
             <li>

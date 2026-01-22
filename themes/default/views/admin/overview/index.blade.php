@@ -5,11 +5,11 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{__('Admin Overview')}}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{route('home')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Dashboard')}}</a>
+                <a href="{{route('home')}}" class="hover:text-accent-500 dark:hover:text-accent-400">{{__('Dashboard')}}</a>
             </li>
             <li>/</li>
             <li>
-                <a href="{{route('admin.overview.index')}}" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">{{__('Admin Overview')}}</a>
+                <a href="{{route('admin.overview.index')}}" class="text-gray-700 hover:text-accent-500 dark:text-gray-300 dark:hover:text-accent-400">{{__('Admin Overview')}}</a>
             </li>
         </ol>
     </div>
@@ -45,7 +45,7 @@
                 <div class="overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-800">
                     <div class="p-5">
                         <div class="flex items-center">
-                            <div class="flex-shrink-0 rounded-md bg-blue-500 p-3">
+                            <div class="flex-shrink-0 rounded-md bg-accent-500 p-3">
                                 <i class="fas fa-server text-white"></i>
                             </div>
                             <div class="ml-5 w-0 flex-1">
@@ -210,7 +210,7 @@
                                         @foreach($tickets as $ticket_id => $ticket)
                                             <tr>
                                                 <td class="whitespace-nowrap px-6 py-4 text-sm">
-                                                    <a class="text-blue-600 hover:underline dark:text-blue-400" href="{{route('admin.ticket.show', ['ticket_id' => $ticket_id])}}">
+                                                    <a class="text-accent-600 hover:underline dark:text-accent-400" href="{{route('admin.ticket.show', ['ticket_id' => $ticket_id])}}">
                                                         #{{$ticket_id}} - {{$ticket->title}}
                                                     </a>
                                                 </td>
@@ -267,7 +267,7 @@
                                     {{ __('You can do that in settings.') }}<br><br>
                                     {{ __('Note') }}: {{ __('If this error persists even after changing the limit, it might mean a server was deleted on Pterodactyl, but not on CtrlPanel. Try clicking the button below.') }}
                                 </p>
-                                <a href="{{route('admin.servers.sync')}}" class="inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:hover:bg-blue-500">
+                                <a href="{{route('admin.servers.sync')}}" class="inline-flex items-center rounded-md bg-accent-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 dark:hover:bg-accent-500">
                                     <i class="mr-2 fas fa-sync"></i>{{__('Sync servers')}}
                                 </a>
                             </div>

@@ -5,7 +5,7 @@
         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{__('Application API')}}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <li>
-                <a href="{{route('home')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Dashboard')}}</a>
+                <a href="{{route('home')}}" class="hover:text-accent-500 dark:hover:text-accent-400">{{__('Dashboard')}}</a>
             </li>
             <li>/</li>
             <li>
@@ -30,7 +30,7 @@
                                 <div class="mb-4">
                                     <label for="memo" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('Memo')}}</label>
                                     <input value="{{$applicationApi->memo}}" id="memo" name="memo" type="text"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('memo') border-red-500 @enderror">
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('memo') border-red-500 @enderror">
                                     @error('memo')
                                     <p class="mt-1 text-xs text-red-500">{{$message}}</p>
                                     @enderror

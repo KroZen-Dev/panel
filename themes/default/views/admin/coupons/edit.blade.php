@@ -39,7 +39,7 @@
                                             type="checkbox"
                                             id="random_codes"
                                             name="random_codes"
-                                            class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                            class="h-4 w-4 rounded border-gray-300 text-accent-600 focus:ring-accent-500"
                                         >
                                         <label for="random_codes" class="ml-2 block text-sm text-gray-900 cursor-pointer">
                                             {{ __('Random Codes') }}
@@ -47,7 +47,7 @@
                                                 data-toggle="popover"
                                                 data-trigger="hover"
                                                 data-content="{{__('Replace the creation of a single code with several at once with a custom field.')}}"
-                                                class="fas fa-info-circle text-gray-400 ml-1 hover:text-blue-500 cursor-help">
+                                                class="fas fa-info-circle text-gray-400 ml-1 hover:text-accent-500 cursor-help">
                                             </i>
                                         </label>
                                     </div>
@@ -65,7 +65,7 @@
                                         step="any"
                                         min="1"
                                         max="100"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm @error('range_codes') border-red-500 @enderror"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm @error('range_codes') border-red-500 @enderror"
                                     >
                                     @error('range_codes')
                                     <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -82,7 +82,7 @@
                                         id="code"
                                         name="code"
                                         placeholder="SUMMER"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm @error('code') border-red-500 @enderror"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm @error('code') border-red-500 @enderror"
                                         value="{{ $coupon->code }}"
                                     >
                                     @error('code')
@@ -180,7 +180,7 @@
                                 </div>
 
                                 <div class="flex justify-end mt-6">
-                                    <button type="submit" class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                    <button type="submit" class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2">
                                         {{__('Submit')}}
                                     </button>
                                 </div>

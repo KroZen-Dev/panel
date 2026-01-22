@@ -9,7 +9,7 @@
             </li>
             <li>/</li>
             <li>
-                <a href="{{ route('admin.store.index') }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Store') }}</a>
+                <a href="{{ route('admin.store.index') }}" class="hover:text-accent-500 dark:hover:text-accent-400">{{ __('Store') }}</a>
             </li>
             <li>/</li>
             <li>
@@ -38,7 +38,7 @@
 
                                 <div class="mb-4">
                                     <label for="type" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Type') }}</label>
-                                    <select required name="type" id="type" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('name') border-red-500 @enderror">
+                                    <select required name="type" id="type" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('name') border-red-500 @enderror">
                                         <option selected value="Credits">{{ $credits_display_name }}</option>
                                         <option value="Server slots">{{ __("Server Slots") }}</option>
                                     </select>
@@ -49,7 +49,7 @@
 
                                 <div class="mb-4">
                                     <label for="currency_code" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Currency code') }}</label>
-                                    <select required name="currency_code" id="currency_code" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('name') border-red-500 @enderror">
+                                    <select required name="currency_code" id="currency_code" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('name') border-red-500 @enderror">
                                         @foreach($currencyCodes as $code)
                                             <option @if($code == 'EUR') selected @endif value="{{ $code }}">{{ $code }}</option>
                                         @endforeach
@@ -58,14 +58,14 @@
                                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                                     @enderror
                                     <div class="text-xs text-gray-500 mt-1 dark:text-gray-400">
-                                        {{ __('Checkout the paypal docs to select the appropriate code') }} <a target="_blank" href="https://developer.paypal.com/docs/api/reference/currency-codes/" class="text-blue-600 hover:underline dark:text-blue-400">link</a>
+                                        {{ __('Checkout the paypal docs to select the appropriate code') }} <a target="_blank" href="https://developer.paypal.com/docs/api/reference/currency-codes/" class="text-accent-600 hover:underline dark:text-accent-400">link</a>
                                     </div>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="price" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Price') }}</label>
                                     <input value="{{ old('price') }}" id="price" name="price" type="number" placeholder="10.00" step="any"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('price') border-red-500 @enderror"
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('price') border-red-500 @enderror"
                                            required="required">
                                     @error('price')
                                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -75,7 +75,7 @@
                                 <div class="mb-4">
                                     <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Quantity') }}</label>
                                     <input value="{{ old('quantity') }}" id="quantity" name="quantity" type="number" placeholder="1000"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('quantity') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('quantity') border-red-500 @enderror"
                                            required="required">
                                     @error('quantity')
                                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -88,7 +88,7 @@
                                 <div class="mb-4">
                                     <label for="display" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Display') }}</label>
                                     <input value="{{ old('display') }}" id="display" name="display" type="text" placeholder="750 + 250"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('display') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('display') border-red-500 @enderror"
                                            required="required">
                                     @error('display')
                                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -101,7 +101,7 @@
                                 <div class="mb-4">
                                     <label for="description" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Description') }}</label>
                                     <input value="{{ old('description') }}" id="description" name="description" type="text" placeholder="{{ __('Adds 1000 credits to your account') }}"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('description') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('description') border-red-500 @enderror"
                                            required="required">
                                     @error('description')
                                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>

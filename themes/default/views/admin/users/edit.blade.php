@@ -74,7 +74,7 @@
                                 <div class="mb-4">
                                     <label for="server_limit" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('Server Limit')}}</label>
                                     <input value="{{$user->server_limit}}" id="server_limit" name="server_limit" min="0" max="1000000" type="number"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('server_limit') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('server_limit') border-red-500 @enderror"
                                            required="required">
                                     @error('server_limit')
                                         <p class="mt-1 text-xs text-red-500">{{$message}}</p>
@@ -83,7 +83,7 @@
 
                                 <div class="mb-4">
                                     <label for="roles" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('Role')}}</label>
-                                    <select id="roles" name="roles" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('role') border-red-500 @enderror" required="required">
+                                    <select id="roles" name="roles" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('role') border-red-500 @enderror" required="required">
                                         @foreach($roles as $role)
                                             <option style="color: {{$role->color}}" value="{{$role->id}}" @if(isset($user) && $user->roles->contains($role)) selected @endif>{{$role->name}}</option>
                                         @endforeach
@@ -120,7 +120,7 @@
                                 <div class="mb-4">
                                     <label for="new_password" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('New Password')}}</label>
                                     <input id="new_password" name="new_password" type="password" placeholder="••••••"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('new_password') border-red-500 @enderror">
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('new_password') border-red-500 @enderror">
                                     @error('new_password')
                                         <p class="mt-1 text-xs text-red-500">{{$message}}</p>
                                     @enderror
@@ -129,7 +129,7 @@
                                 <div class="mb-4">
                                     <label for="new_password_confirmation" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__('Confirm Password')}}</label>
                                     <input id="new_password_confirmation" name="new_password_confirmation" type="password" placeholder="••••••"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('new_password_confirmation') border-red-500 @enderror">
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('new_password_confirmation') border-red-500 @enderror">
                                     @error('new_password_confirmation')
                                         <p class="mt-1 text-xs text-red-500">{{$message}}</p>
                                     @enderror

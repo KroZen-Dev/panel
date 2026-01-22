@@ -10,7 +10,7 @@
                 <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 justify-end">
                     <li class="breadcrumb-item"><a href="{{ route('admin.settings.index') }}" class="hover:text-accent-600 dark:hover:text-accent-400">{{ __('Dashboard') }}</a></li>
                     <li>/</li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.roles.index') }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Roles List') }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.roles.index') }}" class="hover:text-accent-500 dark:hover:text-accent-400">{{ __('Roles List') }}</a></li>
                     <li>/</li>
                     <li class="breadcrumb-item">
                         <a class="text-gray-700 dark:text-gray-300" href="{{ isset($role) ?  route('admin.roles.edit', $role->id) : route('admin.roles.create') }}">{{ isset($role) ?  __('Edit role') : __('Create role') }}</a>
@@ -41,7 +41,7 @@
                                     <div class="mb-4">
                                         <label for="name" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Name') }}</label>
                                         <input type="text" name="name" id="name" value="{{ isset($role) ? $role->name : null}}"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('name') border-red-500 @enderror">
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('name') border-red-500 @enderror">
                                         @error('name')
                                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                                         @enderror
@@ -50,7 +50,7 @@
                                     <div class="mb-4">
                                         <label for="color" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Badge color') }}</label>
                                         <input type="color" name="color" id="color" value="{{ isset($role) ? $role->color : null}}"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-10 p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('color') border-red-500 @enderror">
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm h-10 p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('color') border-red-500 @enderror">
                                         @error('color')
                                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                                         @enderror
@@ -69,7 +69,7 @@
                                 <div class="col-span-1">
                                     <div class="mb-4">
                                         <label for="permissions" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Permissions') }}</label>
-                                        <select name="permissions[]" id="permissions" multiple class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" style="height: 200px">
+                                        <select name="permissions[]" id="permissions" multiple class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" style="height: 200px">
                                             @foreach($permissions as $permission)
                                                 <option @if(isset($role) && $role->permissions->contains($permission)) selected @endif value="{{$permission->id}}">{{$permission->readable_name}}</option>
                                             @endforeach

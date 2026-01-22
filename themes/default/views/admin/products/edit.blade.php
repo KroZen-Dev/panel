@@ -9,7 +9,7 @@
             </li>
             <li>/</li>
             <li>
-                <a href="{{ route('admin.products.index') }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ __('Products') }}</a>
+                <a href="{{ route('admin.products.index') }}" class="hover:text-accent-500 dark:hover:text-accent-400">{{ __('Products') }}</a>
             </li>
             <li>/</li>
             <li>
@@ -79,7 +79,7 @@
                                             {{ __('Billing Period') }}
                                             <i class="fas fa-info-circle ml-1 text-gray-400 cursor-help dark:text-gray-500" data-toggle="popover" data-trigger="hover" data-content="{{ __('Period when the user will be charged for the given price') }}"></i>
                                         </label>
-                                        <select id="billing_period" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('billing_period') border-red-500 @enderror"
+                                        <select id="billing_period" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('billing_period') border-red-500 @enderror"
                                                 name="billing_period" required autocomplete="off">
                                             <option value="hourly" @selected($product->billing_period == 'hourly')>{{ __('Hourly') }}</option>
                                             <option value="daily" @selected($product->billing_period == 'daily')>{{ __('Daily') }}</option>
@@ -99,7 +99,7 @@
                                             {{ __('Default Billing Priority') }}
                                             <i class="fas fa-info-circle ml-1 text-gray-400 cursor-help dark:text-gray-500" data-toggle="popover" data-trigger="hover" data-content="{{ __('Defines the priority at which the servers in this product will be charged.') }}"></i>
                                         </label>
-                                        <select id="default_billing_priority" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('default_billing_priority') border-red-500 @enderror"
+                                        <select id="default_billing_priority" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('default_billing_priority') border-red-500 @enderror"
                                                 name="default_billing_priority" required autocomplete="off">
                                             @foreach(App\Enums\BillingPriority::options() as $value => $label)
                                                 <option value="{{ $value }}" @selected($product->default_billing_priority->value == $value)>
