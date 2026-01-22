@@ -88,6 +88,27 @@
                 }
             });
 
+            document.body.addEventListener('submit', function(e) {
+                var form = e.target;
+                if (!form || !form.matches) return;
+                if (form.matches('form.ticket-delete-form')) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: '{{ __('Are you sure?') }}',
+                        text: '{{ __('This action will permanently delete the ticket.') }}',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: '{{ __('Yes, delete it!') }}',
+                        cancelButtonText: '{{ __('Cancel') }}',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                }
+            });
+
             setInterval(function () {
                 table.ajax.reload(null, false);
             }, 30000);
