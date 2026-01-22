@@ -5,11 +5,11 @@
         <h1 class="text-2xl font-bold text-gray-800">{{__('Coupon')}}</h1>
         <ol class="flex items-center space-x-2 text-sm text-gray-500">
             <li>
-                <a href="{{route('home')}}" class="hover:text-blue-600">{{__('Dashboard')}}</a>
+                <a href="{{route('home')}}" class="hover:text-accent-500">{{__('Dashboard')}}</a>
             </li>
             <li>/</li>
             <li>
-                <a href="{{route('admin.coupons.index')}}" class="hover:text-blue-600">{{__('Coupon')}}</a>
+                <a href="{{route('admin.coupons.index')}}" class="hover:text-accent-500">{{__('Coupon')}}</a>
             </li>
             <li>/</li>
             <li>
@@ -98,7 +98,7 @@
                                     <select
                                         name="type"
                                         id="type"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm"
                                         required
                                     >
                                         <option value="percentage" @if($coupon->type == 'percentage') selected @endif>{{ __('Percentage') }}</option>
@@ -144,7 +144,7 @@
                                         type="number"
                                         step="any"
                                         min="1"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm @error('max_uses') border-red-500 @enderror"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm @error('max_uses') border-red-500 @enderror"
                                         value="{{ $coupon->max_uses }}"
                                     >
                                     @error('max_uses')
@@ -163,7 +163,7 @@
                                             name="expires_at"
                                             placeholder="yyyy-mm-dd hh:mm:ss"
                                             type="text"
-                                            class="block w-full rounded-none rounded-l-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm datetimepicker-input @error('expires_at') border-red-500 @enderror"
+                                            class="block w-full rounded-none rounded-l-md border-gray-300 focus:border-accent-500 focus:ring-accent-500 sm:text-sm datetimepicker-input @error('expires_at') border-red-500 @enderror"
                                             data-target="#expires_at"
                                         />
                                         <div

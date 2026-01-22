@@ -41,7 +41,7 @@
                                 <div class="mb-4 flex flex-row-reverse">
                                     <div class="flex items-center">
                                         <input type="checkbox" @if ($product->disabled) checked @endif name="disabled" id="switch1"
-                                               class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                               class="h-4 w-4 rounded border-gray-300 text-accent-600 focus:ring-accent-500 dark:bg-gray-700 dark:border-gray-600">
                                         <label class="ml-2 block text-sm text-gray-900 cursor-pointer dark:text-gray-300" for="switch1">
                                             {{ __('Disabled') }}
                                             <i class="fas fa-info-circle ml-1 text-gray-400 cursor-help dark:text-gray-500"
@@ -118,7 +118,7 @@
                                         <label for="price" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Price in') }} {{ $credits_display_name }}</label>
                                         <input value="{{ Currency::formatForForm($product->price) }}" id="price" name="price"
                                                type="number" step=".0001"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('price') border-red-500 @enderror"
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('disk') border-red-500 @enderror"
                                                required="required">
                                         @error('price')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -131,7 +131,7 @@
                                         </label>
                                         <input value="{{ $product->minimum_credits ? Currency::formatForForm($product->minimum_credits) : null }}" id="minimum_credits"
                                                name="minimum_credits" type="number"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('minimum_credits') border-red-500 @enderror">
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('minimum_credits') border-red-500 @enderror">
                                         @error('minimum_credits')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                                         @enderror
@@ -142,7 +142,7 @@
                                     <div>
                                         <label for="cpu" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Cpu') }}</label>
                                         <input value="{{ $product->cpu }}" id="cpu" name="cpu" type="number"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('cpu') border-red-500 @enderror" required="required">
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('cpu') border-red-500 @enderror" required="required">
                                         @error('cpu')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                                         @enderror
@@ -150,7 +150,7 @@
                                     <div>
                                         <label for="disk" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Disk') }}</label>
                                         <input value="{{ $product->disk }}" id="disk" name="disk"
-                                               type="number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('disk') border-red-500 @enderror"
+                                               type="number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('disk') border-red-500 @enderror"
                                                required="required">
                                         @error('disk')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -162,7 +162,7 @@
                                     <div>
                                         <label for="memory" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Memory') }}</label>
                                         <input value="{{ $product->memory }}" id="memory" name="memory"
-                                               type="number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('memory') border-red-500 @enderror"
+                                               type="number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('memory') border-red-500 @enderror"
                                                required="required">
                                         @error('memory')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -171,7 +171,7 @@
                                     <div>
                                         <label for="io" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('IO') }}</label>
                                         <input value="{{ $product->io }}" id="io" name="io"
-                                               type="number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('io') border-red-500 @enderror"
+                                               type="number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('io') border-red-500 @enderror"
                                                required="required">
                                         @error('io')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -183,7 +183,7 @@
                                     <div>
                                         <label for="swap" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Swap') }}</label>
                                         <input value="{{ $product->swap }}" id="swap" name="swap"
-                                               type="number" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('swap') border-red-500 @enderror"
+                                               type="number" class="block w/full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('swap') border-red-500 @enderror"
                                                required="required">
                                         @error('swap')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -196,7 +196,7 @@
                                         </label>
                                         <input value="{{ $product->serverlimit ??  0 }}"
                                                id="serverlimit" name="serverlimit" type="number"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('serverlimit') border-red-500 @enderror"
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('serverlimit') border-red-500 @enderror"
                                                required="required">
                                         @error('serverlimit')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -209,7 +209,7 @@
                                         <label for="allocations" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Allocations') }}</label>
                                         <input value="{{ $product->allocations ?? (old('allocations') ?? 0) }}"
                                                id="allocations" name="allocations" type="number"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('allocations') border-red-500 @enderror"
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('allocations') border-red-500 @enderror"
                                                required="required">
                                         @error('allocations')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -219,7 +219,7 @@
                                         <label for="databases" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Databases') }}</label>
                                         <input value="{{ $product->databases ?? (old('databases') ?? 1) }}"
                                                id="databases" name="databases" type="number"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('databases') border-red-500 @enderror"
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('databases') border-red-500 @enderror"
                                                required="required">
                                         @error('databases')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -229,7 +229,7 @@
                                         <label for="backups" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Backups') }}</label>
                                         <input value="{{ $product->backups ?? (old('backups') ?? 1) }}"
                                                id="backups" name="backups" type="number"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('backups') border-red-500 @enderror"
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('backups') border-red-500 @enderror"
                                                required="required">
                                         @error('backups')
                                             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -239,7 +239,7 @@
 
                                 <div class="mb-4">
                                     <div class="flex items-center">
-                                        <input type="checkbox" value="1" id="oom_killer" name="oom_killer" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                        <input type="checkbox" value="1" id="oom_killer" name="oom_killer" class="h-4 w-4 rounded border-gray-300 text-accent-600 focus:ring-accent-500 dark:bg-gray-700 dark:border-gray-600">
                                         <label class="ml-2 block text-sm text-gray-900 cursor-pointer dark:text-gray-300" for="oom_killer">
                                             {{ __('OOM Killer') }}
                                             <i class="fas fa-info-circle ml-1 text-gray-400 cursor-help dark:text-gray-500" data-toggle="popover" data-trigger="hover" data-content="{{ __('Enable or Disable the OOM Killer for this Product.') }}"></i>
@@ -268,7 +268,7 @@
                             <div class="p-6">
                                 <div class="mb-4">
                                     <label for="nodes" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Nodes') }}</label>
-                                    <select id="nodes" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('nodes') border-red-500 @enderror"
+                                    <select id="nodes" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('nodes') border-red-500 @enderror"
                                             name="nodes[]" multiple="multiple" autocomplete="off">
                                         @foreach ($locations as $location)
                                             <optgroup label="{{ $location->name }}">
@@ -295,7 +295,7 @@
                                             <button type="button" id="deselect-all-eggs" class="ml-2 rounded-md bg-gray-200 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-300 dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500">{{ __('Deselect All') }}</button>
                                         </div>
                                     </div>
-                                    <select id="eggs" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('eggs') border-red-500 @enderror"
+                                    <select id="eggs" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('eggs') border-red-500 @enderror"
                                             name="eggs[]" multiple="multiple" autocomplete="off">
                                         @foreach ($nests as $nest)
                                             <optgroup label="{{ $nest->name }}">

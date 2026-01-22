@@ -187,7 +187,7 @@
                                                                     @break
 
                                                                 @case($value['type'] == 'select')
-                                                                    <select id="{{ $key }}" class="custom-select block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                                                    <select id="{{ $key }}" class="custom-select block w/full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                                                             name="{{ $key }}">
                                                                         @if ($value['identifier'] == 'display')
                                                                             @foreach ($value['options'] as $option => $display)

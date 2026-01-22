@@ -55,10 +55,10 @@
                                 @csrf
                                 <div class="mb-4">
                                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__("Name")}}</label>
-                                    <input id="name" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" name="name" required>
+                                    <input id="name" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" name="name" required>
                                 </div>
                                 <div class="flex justify-end">
-                                    <button type="submit" class="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500">
+                                    <button type="submit" class="inline-flex items-center rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:hover:bg-accent-500">
                                         {{__('Submit')}}
                                     </button>
                                 </div>
@@ -87,11 +87,11 @@
 
                                 <div class="mb-4">
                                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{__("New Name")}}</label>
-                                    <input id="name" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" name="name" required>
+                                    <input id="name" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" name="name" required>
                                 </div>
 
                                 <div class="flex justify-end">
-                                    <button type="submit" class="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500">
+                                    <button type="submit" class="inline-flex items-center rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:hover:bg-accent-500">
                                         {{__('Submit')}}
                                     </button>
                                 </div>

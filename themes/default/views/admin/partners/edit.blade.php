@@ -85,7 +85,7 @@
                                     </label>
                                     <input value="{{$partner->referral_system_commission}}" placeholder="{{__('Commission in percent')}}" id="referral_system_commission" name="referral_system_commission"
                                            type="number" step="any" min="-1" max="100"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('referral_system_commission') border-red-500 @enderror">
+                                           class="block w/full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('referral_system_commission') border-red-500 @enderror">
                                     @error('referral_system_commission')
                                     <p class="mt-1 text-xs text-red-500">{{$message}}</p>
                                     @enderror

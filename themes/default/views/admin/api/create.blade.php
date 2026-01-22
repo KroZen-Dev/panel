@@ -9,7 +9,7 @@
             </li>
             <li>/</li>
             <li>
-                <a href="{{route('admin.api.index')}}" class="hover:text-blue-600 dark:hover:text-blue-400">{{__('Application API')}}</a>
+                <a href="{{route('admin.api.index')}}" class="hover:text-accent-500 dark:hover:text-accent-400">{{__('Application API')}}</a>
             </li>
             <li>/</li>
             <li>

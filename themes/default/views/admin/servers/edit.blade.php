@@ -64,7 +64,7 @@
                                            data-toggle="popover" data-trigger="hover"
                                            data-content="{{ __('Change the current server owner on CtrlPanel and pterodactyl.') }}"></i>
                                     </label>
-                                    <select name="user_id" id="user_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('user_id') border-red-500 @enderror">
+                                    <select name="user_id" id="user_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white @error('user_id') border-red-500 @enderror">
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}" @if ($user->id == $server->user_id) selected @endif>
                                                 {{ $user->name }} ({{ $user->email }}) ({{ $user->id }})

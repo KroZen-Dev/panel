@@ -9,7 +9,7 @@
             </li>
             <li>/</li>
             <li>
-                <a class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                <a class="text-gray-700 hover:text-accent-500 dark:text-gray-300 dark:hover:text-accent-400"
                    href="{{ route('admin.servers.index') }}">{{ __('Servers') }}</a>
             </li>
         </ol>

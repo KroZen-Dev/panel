@@ -98,7 +98,7 @@
                                     <select
                                         name="type"
                                         id="type"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                        class="block w/full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                         required
                                     >
                                         <option value="percentage" @if(old('type') == 'percentage') selected @endif>{{ __('Percentage') }}</option>
@@ -121,7 +121,7 @@
                                             type="number"
                                             step="any"
                                             min="1"
-                                            class="block w-full rounded-none rounded-l-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('value') border-red-500 @enderror"
+                                            class="block w-full rounded-none rounded-l-md border-gray-300 focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('value') border-red-500 @enderror"
                                             value="{{ old('value') }}"
                                         >
                                         <span id="input_percentage" class="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm dark:bg-gray-600 dark:border-gray-600 dark:text-gray-300">
@@ -144,7 +144,7 @@
                                         type="number"
                                         step="any"
                                         min="1"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('max_uses') border-red-500 @enderror"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('max_uses') border-red-500 @enderror"
                                         value="{{ old('max_uses') }}"
                                     >
                                     @error('max_uses')
@@ -163,7 +163,7 @@
                                             name="expires_at"
                                             placeholder="yyyy-mm-dd hh:mm:ss"
                                             type="text"
-                                            class="block w-full rounded-none rounded-l-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm datetimepicker-input dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('expires_at') border-red-500 @enderror"
+                                            class="block w-full rounded-none rounded-l-md border-gray-300 focus:border-accent-500 focus:ring-accent-500 sm:text-sm datetimepicker-input dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('expires_at') border-red-500 @enderror"
                                             data-target="#expires_at"
                                         />
                                         <div

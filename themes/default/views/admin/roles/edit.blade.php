@@ -59,7 +59,7 @@
                                     <div class="mb-4">
                                         <label for="power" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Power') }}</label>
                                         <input type="number" name="power" id="power" min="1" max="100" step="1" value="{{ isset($role) ? $role->power : 10}}"
-                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('power') border-red-500 @enderror">
+                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('power') border-red-500 @enderror">
                                         @error('power')
                                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                                         @enderror

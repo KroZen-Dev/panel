@@ -82,7 +82,7 @@
                                     <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Quantity') }}</label>
                                     <input value="{{ $shopProduct->type == 'Credits' ? Currency::formatForForm($shopProduct->quantity) : $shopProduct->quantity }}"
                                            id="quantity" name="quantity" type="number" placeholder="1000"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('quantity') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('quantity') border-red-500 @enderror"
                                            required="required">
                                     @error('quantity')
                                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -95,7 +95,7 @@
                                 <div class="mb-4">
                                     <label for="display" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Display') }}</label>
                                     <input value="{{ $shopProduct->display }}" id="display" name="display" type="text" placeholder="750 + 250"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('display') border-red-500 @enderror"
+                                           class="block w/full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('display') border-red-500 @enderror"
                                            required="required">
                                     @error('display')
                                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
@@ -108,7 +108,7 @@
                                 <div class="mb-4">
                                     <label for="description" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">{{ __('Description') }}</label>
                                     <input value="{{ $shopProduct->description }}" id="description" name="description" type="text" placeholder="{{ __('Adds 1000 credits to your account') }}"
-                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('description') border-red-500 @enderror"
+                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 @error('description') border-red-500 @enderror"
                                            required="required">
                                     @error('description')
                                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
