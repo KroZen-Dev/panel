@@ -196,7 +196,7 @@
                     });
                     document.getElementById('ticket-comments').innerHTML = html;
                 });
-            }, 30000);
+            }, 15000);
         });
     </script>
 @endsection
