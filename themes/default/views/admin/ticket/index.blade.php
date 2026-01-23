@@ -111,7 +111,7 @@
 
             setInterval(function () {
                 table.ajax.reload(null, false);
-            }, 30000);
+            }, 15000);
         });
     </script>
 @endsection
